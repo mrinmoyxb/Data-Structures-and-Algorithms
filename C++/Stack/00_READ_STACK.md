@@ -6,8 +6,8 @@ A stack is an Abstract Data Type (ADT), that is popularly used in most programmi
 # **Basic Stack Operations:**
 The following are some common operations implemented on the stack:
 
-* **`push():`** When we insert an element in a stack then the operation is known as a push. If the stack is full then the overflow condition occurs.
-* **`pop():`** When we delete an element from the stack, the operation is known as a pop. If the stack is empty means that no element exists in the stack, this state is known as an underflow state.
+* **`push():`** When we insert an element in a stack then the operation is known as a push. If the stack is full then the **`overflow`** condition occurs. When we initialize a stack, we set the value of **`top as -1`** to check that the stack is empty. When the new element is pushed in a stack, first, the value of the top gets incremented, i.e., **`top=top+1`**, and the element will be placed at the new position of the top.
+* **`pop():`** When we delete an element from the stack, the operation is known as a pop. If the stack is empty means that no element exists in the stack, this state is known as an underflow state. If we try to delete the element from the empty stack, then the **`underflow`** condition occurs. If the stack is not empty, we first access the element which is pointed by the top. Once the pop operation is performed, the top is decremented by 1, i.e., **`top=top-1`**.
 * **`isEmpty():`** It determines whether the stack is empty or not.
 * **`isFull():`** It determines whether the stack is full or not.'
 * **`peek():`** It returns the element at the given position.
