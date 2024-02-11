@@ -27,34 +27,44 @@ void display(Node* &head){
     }
 }
 
-void findTheMid(Node* &head){
+void findTheMidValue(Node* &head){
     Node* temp = head;
+    Node* currentNode = head;
     int length = 0;
-    double position;
+    int position;
     while(temp!=NULL){
         temp = temp->next;
         length++;
     }
-    
+
+    //* finding the mid value: 
     if(length%2==0){
-        position = (length/2)+1;
+        position = int((length/2)+1);
     }
     else{
-        position = (length/2)+1;
+        position = int((length/2)+1);
     }
     cout<<"\nLength of linked list: "<<length<<endl;
     cout<<"Mid position: "<<position<<endl;
-    
+
+    //* Displaying the mid value: 
+    int count = 1;
+    while(count<=position-1){
+        currentNode = currentNode->next;
+        count++;
+    }
+    cout<<"Mid value: "<<currentNode->data<<" "<<endl;
 }
 
 int main(){
-    Node* node1 = new Node(5);
+    Node* node1 = new Node(15);
     Node* head = node1;
-    insertAtHead(head, 4);
-    insertAtHead(head, 3);
-    insertAtHead(head, 2);
-    insertAtHead(head, 1);
+    insertAtHead(head, 24);
+    insertAtHead(head, 43);
+    insertAtHead(head, 52);
+    insertAtHead(head, 16);
+    insertAtHead(head, 20);
     display(head);
-    findTheMid(head);
+    findTheMidValue(head);
     return 0;
 }
