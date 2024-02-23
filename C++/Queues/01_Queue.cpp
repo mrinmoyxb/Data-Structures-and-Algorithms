@@ -35,7 +35,7 @@ class Queue{
                 front = -1;
                 rear = -1;
             }
-        }
+        } 
     }
 
     void display(){
