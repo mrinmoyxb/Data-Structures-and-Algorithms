@@ -44,6 +44,14 @@ class Stack:
         else:
             print("Not found")
     
+    #? change the element in the stack at given index
+    def change(self, data, index):
+        if index>self.size-1:
+            print(f"Can't insert {data} at index {index}, Out of range")
+        elif index<=self.size-1:
+            self.stack[index]=data
+        
+    
     #? Display all the elements present in the stack
     def show(self):
         print("Stack: ")
@@ -58,4 +66,5 @@ s.push(3)
 s.push(2)
 s.push(5)
 s.show()
-print(s.peek())
+s.change(200, 5)
+s.show()
