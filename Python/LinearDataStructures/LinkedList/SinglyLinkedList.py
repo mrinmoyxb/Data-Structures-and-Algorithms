@@ -49,7 +49,7 @@ class LinkedList:
     #? search a value in the linked list
     def searchLinkedList(self, data):
         p = self.__findLinkedList(data)
-        if p!=None:
+        if p!=[]:
             print(f"Found at position: {p}")
         else:
             print("Not available!")

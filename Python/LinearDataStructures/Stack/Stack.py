@@ -11,16 +11,16 @@ class Stack:
             self.top +=1
             self.stack.append(data)
         else:
-            print("Stack Overflow!")
+            print(f"Can't insert {data}, Stack Overflow!")
     
-    #? Popped/Delete the top element of the stack
+    #? Pop/Delete the top element of the stack
     def pop(self):
         if self.top==-1:
             print("Stack Underflow!")
         else:
             self.stack.pop()
 
-    #? Display elements present in the stack
+    #? Display all the elements present in the stack
     def show(self):
         print("Stack: ")
         for i in self.stack[::-1]:
@@ -30,13 +30,28 @@ class Stack:
     def count(self):
         value = len(self.stack)
         return value
+    
+    def __searchInStack(self, value):
+        l = []
+        for i in range(len(self.stack)):
+            if self.stack[i]==value:
+                l.append(i)
+        return l
+    
+    #? Search an element in the stack
+    def search(self, value):
+        i = self.__searchInStack(value)
+        if i!=[]:
+            print(f"Found at index: {i}")
+        else:
+            print("Not found")
+
 
 s = Stack(5)
 s.push(1)
 s.push(2)
 s.push(3)
+s.push(2)
+s.push(5)
 s.show()
-print("Count: ",s.count())
-s.pop()
-s.show()
-print("Count: ",s.count())
+s.search(2)
