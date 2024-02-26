@@ -1,4 +1,6 @@
 class Node:
+    
+    #? create a node
     def __init__(self, data):
         self.data  = data
         self.next = None
@@ -8,18 +10,21 @@ class LinkedList:
     def __init__(self):
          self.head = None
     
+    #? insert a node at the head of linked list
     def insertAtHead(self, data):
         newNode = Node(data)
         newNode.next = self.head
         self.head = newNode
-       
+    
+    #? insert a node at the tail of the linked list
     def insertAtTail(self, data):
         newNode = Node(data)
         currentNode = self.head
         while(currentNode.next!=None):
             currentNode = currentNode.next
         currentNode.next = newNode
-
+    
+    #? insert a node at any position of the linked list
     def insertAtPosition(self, data, position):
         newNode = Node(data)
         currentNode = self.head
@@ -40,7 +45,8 @@ class LinkedList:
             position +=1
             currentNode = currentNode.next
         return l
-
+    
+    #? search a value in the linked list
     def searchLinkedList(self, data):
         p = self.__findLinkedList(data)
         if p!=None:
@@ -48,6 +54,7 @@ class LinkedList:
         else:
             print("Not available!")
     
+    #? length of the linked list
     def lengthLinkedList(self):
         currentNode = self.head
         count = 0
@@ -56,6 +63,7 @@ class LinkedList:
             currentNode = currentNode.next
         return count
     
+    #? show the complete linked list
     def displayLinkedList(self):
         print("Linked List: ")
         currentNode = self.head
@@ -63,6 +71,7 @@ class LinkedList:
             print(currentNode.data)
             currentNode = currentNode.next
     
+    #? delete a node at particular or provided position of the linked list
     def deleteLinkedList(self, position):
         currentNode = self.head
         count = 1
