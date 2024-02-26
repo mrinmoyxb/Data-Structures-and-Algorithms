@@ -62,8 +62,14 @@ class LinkedList:
         while(currentNode!=None):
             print(currentNode.data)
             currentNode = currentNode.next
-            
-
+    
+    def deleteLinkedList(self, position):
+        currentNode = self.head
+        count = 1
+        while(count<position-1):
+            currentNode = currentNode.next
+            count +=1
+        currentNode.next = currentNode.next.next
         
 
 l = LinkedList()
@@ -72,6 +78,6 @@ l.insertAtHead(20)
 l.insertAtPosition(90, 2)
 l.insertAtTail(20)
 l.displayLinkedList()
-l.searchLinkedList(20)
-l1 = l.lengthLinkedList()
-print(l1)
+print()
+l.deleteLinkedList(3)
+l.displayLinkedList()
