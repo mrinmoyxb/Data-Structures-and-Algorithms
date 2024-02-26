@@ -58,13 +58,32 @@ class Stack:
         for i in self.stack[::-1]:
             print(i)
 
+    #? Check if stack is empty:
+    def isEmpty(self):
+        if self.stack == []:
+            return True
+        else:
+            return False
+    
+    #? Check if stack is full:
+    def isFull(self):
+        if len(self.stack)==self.size:
+            return True
+        else:
+            return False
+
 
 s = Stack(5)
+
 s.push(1)
 s.push(2)
 s.push(3)
 s.push(2)
-s.push(5)
+s.push(100)
 s.show()
-s.change(200, 5)
+print()
+s.change(200, 0)
+s.change(200, 4)
 s.show()
+print(s.isEmpty())
+print(s.isFull())
