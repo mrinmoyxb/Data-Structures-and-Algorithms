@@ -19,12 +19,10 @@ class Stack:
             print("Stack Underflow!")
         else:
             self.stack.pop()
-
-    #? Display all the elements present in the stack
-    def show(self):
-        print("Stack: ")
-        for i in self.stack[::-1]:
-            print(i)
+    
+    #? Top element in the stack
+    def peek(self):
+        return self.stack[self.top]
     
     #? Number of elements present in the stack 
     def count(self):
@@ -45,6 +43,12 @@ class Stack:
             print(f"Found at index: {i}")
         else:
             print("Not found")
+    
+    #? Display all the elements present in the stack
+    def show(self):
+        print("Stack: ")
+        for i in self.stack[::-1]:
+            print(i)
 
 
 s = Stack(5)
@@ -54,4 +58,4 @@ s.push(3)
 s.push(2)
 s.push(5)
 s.show()
-s.search(2)
+print(s.peek())
