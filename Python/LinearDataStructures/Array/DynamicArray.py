@@ -6,8 +6,10 @@ class DynamicArray:
     #? insert elements in dynamic array
     def insertElement(self, data):
         self.arr.append(data)
-    
-    
+
+    #? insert at any position in the dynamic array
+    def insertAtIndex(self, data, index):
+        self.arr.insert(index, data)
     
     #* private 
     def __findElement(self, data):
@@ -25,10 +27,16 @@ class DynamicArray:
         else:
             print(f"\nFound at indexes: {i}")
     
-    #? Length of the dynamic array
+    #? length of the dynamic array
     def lengthOfArray(self):
         return len(self.arr)
-
+    
+    #? delete an element
+    def deleteElement(self, data):
+        for i in self.arr:
+            if i==data:
+                self.arr.remove(i)
+                return True
 
     #? display elements of dynamic array
     def show(self):
@@ -42,5 +50,9 @@ d.insertElement(800)
 d.insertElement(40)
 d.insertElement(50)
 d.show()
-d.searchElement(900)
-print("Length ", d.lengthOfArray())
+d.deleteElement(800)
+print()
+d.show()
+print()
+d.insertAtIndex(69, 2)
+d.show()

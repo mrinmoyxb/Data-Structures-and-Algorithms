@@ -11,6 +11,11 @@ class Array:
         else:
             print(f"Can't insert {data} in the given array, out of range")
     
+    #? insert at any position in the array
+    def insertAtIndex(self, data, index):
+        if index>0 and index<=self.size-1:
+            self.arr.insert(index, data)
+    
     #? delete an element from the array:
     def deleteElement(self, data):
         for i in self.arr:
@@ -68,5 +73,9 @@ a.show()
 print()
 
 a.searchAndReplace(2, 900)
+a.show()
+
+print()
+a.insertAtIndex(3000, 2)
 a.show()
 

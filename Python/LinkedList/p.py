@@ -1,15 +1,10 @@
-def demo(index, data):
+def demo():
     l = [12, 13, 45, 60, 43]
-    size = 5
     print(l)
-    if index>0 and index<=size-1:
-        for i in range(len(l)):
-            if i==index:
-                l[i] = data
-                print("Replaced")
+    l.insert(3, 900)
     print(l)
 
-demo(2, 900)
+demo()
 
 
 # def demos(data):
