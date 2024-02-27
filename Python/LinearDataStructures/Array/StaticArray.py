@@ -24,7 +24,7 @@ class Array:
                 return True
         return False
 
-    #* private 
+    #! private 
     def __findElement(self, data):
         l = []
         for i in range(len(self.arr)):
@@ -40,7 +40,7 @@ class Array:
         else:
             print(f"Found at indexes: {i}")
     
-    #* private 
+    #! private 
     def __replace_Element(self, index, value):
         if index>0 and index<=self.size-1:
             for i in range(len(self.arr)):
@@ -61,21 +61,15 @@ class Array:
         print("Array: ")
         for i in range(len(self.arr)):
             print(self.arr[i])
-    
 
-a = Array(5)
-a.insertElement(10)
-a.insertElement(20)
-a.insertElement(30)
-a.insertElement(40)
-a.insertElement(50)
-a.show()
-print()
+    #? list of all methods with description
+    @staticmethod
+    def help():
+        print("1 -> insertElement(value): inserts an element in the array")
+        print("2 -> insertAtIndex(value, index): inserts an element in the array at specific index within the size limit")
+        print("3 -> deleteElement(value): deletes an element in the array")
+        print("4 -> searchElement(value): searches for an element in the array, returns the index of the element if found in the array")
+        print("5 -> replaceElement(index, value): replaces an element at the provided index")
+        print("6 -> show(): displays the entire array")
 
-a.searchAndReplace(2, 900)
-a.show()
-
-print()
-a.insertAtIndex(3000, 2)
-a.show()
 
