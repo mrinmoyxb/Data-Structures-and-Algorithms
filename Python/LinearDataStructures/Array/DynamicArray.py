@@ -27,6 +27,21 @@ class DynamicArray:
         else:
             print(f"\nFound at indexes: {i}")
     
+    #* private 
+    def __replace_Element(self, index, value):
+        for i in range(len(self.arr)):
+            if i==index:
+                self.arr[i]=value
+                return True
+                
+    #? search and replace element:
+    def replaceElement(self, index, value):
+        s = self.__replace_Element(index, value)
+        if s==True:
+            print("Replaced")
+        else:
+            print("Index not found")
+    
     #? length of the dynamic array
     def lengthOfArray(self):
         return len(self.arr)
@@ -55,4 +70,6 @@ print()
 d.show()
 print()
 d.insertAtIndex(69, 2)
+d.show()
+d.replaceElement(2, 900)
 d.show()

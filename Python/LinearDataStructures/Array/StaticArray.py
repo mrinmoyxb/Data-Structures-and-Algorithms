@@ -41,7 +41,7 @@ class Array:
             print(f"Found at indexes: {i}")
     
     #* private 
-    def __replaceElement(self, index, value):
+    def __replace_Element(self, index, value):
         if index>0 and index<=self.size-1:
             for i in range(len(self.arr)):
                 if i==index:
@@ -49,8 +49,8 @@ class Array:
                     return True
     
     #? replace an element in the array based on index:
-    def searchAndReplace(self, index, value):
-        s = self.__replaceElement(index, value)
+    def replaceElement(self, index, value):
+        s = self.__replace_Element(index, value)
         if s==True:
             print("Replaced")
         else:
