@@ -7,10 +7,7 @@ class DynamicArray:
     def insertElement(self, data):
         self.arr.append(data)
     
-    #? display elements of dynamic array
-    def show(self):
-        for i in self.arr:
-            print(i, end=" ")
+    
     
     #* private 
     def __findElement(self, data):
@@ -27,6 +24,16 @@ class DynamicArray:
             print(f"\n{data}, not found in the array")
         else:
             print(f"\nFound at indexes: {i}")
+    
+    #? Length of the dynamic array
+    def lengthOfArray(self):
+        return len(self.arr)
+
+
+    #? display elements of dynamic array
+    def show(self):
+        for i in self.arr:
+            print(i, end=" ")
 
 d = DynamicArray()
 d.insertElement(10)
@@ -36,3 +43,4 @@ d.insertElement(40)
 d.insertElement(50)
 d.show()
 d.searchElement(900)
+print("Length ", d.lengthOfArray())

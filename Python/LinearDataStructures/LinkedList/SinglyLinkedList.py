@@ -34,7 +34,8 @@ class SinglyLinkedList:
             count+=1
         newNode.next = currentNode.next
         currentNode.next = newNode
-    
+
+    #* private
     def __findLinkedList(self, data):
         currentNode = self.head
         position = 1
@@ -63,14 +64,6 @@ class SinglyLinkedList:
             currentNode = currentNode.next
         return count
     
-    #? show the complete linked list
-    def displayLinkedList(self):
-        print("Linked List: ")
-        currentNode = self.head
-        while(currentNode!=None):
-            print(currentNode.data)
-            currentNode = currentNode.next
-    
     #? delete a node at particular or provided position of the linked list
     def deleteLinkedList(self, position):
         currentNode = self.head
@@ -79,9 +72,17 @@ class SinglyLinkedList:
             currentNode = currentNode.next
             count +=1
         currentNode.next = currentNode.next.next
-        
-
-l = LinkedList()
+    
+    #? show the complete linked list
+    def displayLinkedList(self):
+        print("Linked List: ")
+        currentNode = self.head
+        while(currentNode!=None):
+            print(currentNode.data)
+            currentNode = currentNode.next
+    
+    
+l = SinglyLinkedList()
 l.insertAtHead(10)
 l.insertAtHead(20)
 l.insertAtPosition(90, 2)
