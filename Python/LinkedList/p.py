@@ -17,14 +17,5 @@
 # d.help()
 # #Demo.help()\
 l = [10, 2, "A", 67, 5, 0]
-def sortArray():
-    try:
-        l.sort()
-        return True
-    except:
-        print("Only integers are allowed ", end="")
-        return False
-
-print(l)
-print(sortArray())
-print(l)
+for i in l:
+    print(i)
