@@ -1,21 +1,14 @@
-# class Demo:
+def binarySearch(arr, value):
+    found_indexes = []
+    start = 0
+    end = len(arr)-1
+    while start<=end:
+        mid = start+(end-start)//2
+        if arr[mid]==value:
+            return mid
+        elif arr[mid]>value:
+            end = mid-1
+        else:
+            start = mid+1
+    return found_indexes
 
-#     def __init__(self):
-#         print("Class initialised")
-    
-#     @staticmethod
-#     def help():
-#         print("insertElement(value): inserts an element in the array")
-#         print("insertAtIndex(value, index): inserts an element in the array at specific index within the size limit")
-#         print("deleteElement(value): deletes an element in the array")
-#         print("searchElement(value): searches for an element in the array, returns the index of the element if found in the array")
-#         print("replaceElement(index, value): replaces an element at the provided index")
-#         print("show(): displays the entire array")
-
-
-# d = Demo()
-# d.help()
-# #Demo.help()\
-l = [10, 2, "A", 67, 5, 0]
-for i in l:
-    print(i)
