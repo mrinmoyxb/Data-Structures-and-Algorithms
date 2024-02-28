@@ -14,8 +14,11 @@ class BinarySearchAlgo:
                 end = mid-1
             else:
                 start = mid+1
-
-
+        print(self.indices)
     
+    def displayResult(self):
+        print(self.indices)
+
+
 
 
