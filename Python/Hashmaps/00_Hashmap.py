@@ -1,7 +1,7 @@
 class Hashmap:
 
     def __init__(self):
-        self.MAX = 100
+        self.MAX = 10
         self.arr = [None for i in range(self.MAX)]
     
     #? hash function:
@@ -21,10 +21,18 @@ class Hashmap:
     def __getitem__(self, key):
         h = self.getHash(key)
         return self.arr[h]
+    
+    def __delitem__(self, key):
+        h = self.getHash(key)
+        self.arr[h] = None
 
 h = Hashmap()
 h['jan1'] = 100
 h['jan2'] = 120
 h['jan3'] = 190
+print(f"{h.arr}")
+print()
+
+del h['jan2']
 print(f"{h.arr}")
     
