@@ -2,7 +2,7 @@ class Hashmap:
 
     def __init__(self):
         self.MAX = 10
-        self.arr = [None for i in range(self.MAX)]
+        self.arr = [[] for i in range(self.MAX)]
     
     #? hash function:
     #? find the ASCII value of each character of key, and calculate the total sum
