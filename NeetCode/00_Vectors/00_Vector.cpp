@@ -38,6 +38,6 @@ int main(){
     for(int element:v){
         cout<<element<<endl;
     }
-
+    cout<<endl;
     return 0;
 }
