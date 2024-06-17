@@ -3,13 +3,9 @@
 using namespace std;
 
 int main(){
-
     vector<int> v;
 
-    int size, value;
-    // int index1 = 0;
-    // int index2 = 0;
-
+    int size, value, pairs=0;
     cout<<"Enter the size of the array: ";
     cin>>size;
 
@@ -25,16 +21,20 @@ int main(){
         cout<<v[i]<<" ";
     }
 
-    cout<<"\nEnter the value: ";
+    cout<<"\nEnter value: ";
     cin>>value;
 
     for(int i=0; i<v.size(); i++){
         for(int j=i+1; j<v.size(); j++){
-            if((v[i]+v[j])==value){
-                cout<<"Index1: "<<i<<" Index2: "<<j<<endl;
+            for(int k=j+1; k<v.size(); k++){
+                if((v[i]+v[j]+v[k])==value){
+                    cout<<"Index1: "<<i<<" Index2: "<<j<<" Index3: "<<k<<endl;
+                    pairs++;
+                }
             }
         }
     }
+    cout<<"Number of pairs: "<<pairs<<endl;
 
     return 0;
 }
