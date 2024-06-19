@@ -42,3 +42,6 @@ int main(){
 
     return 0;
 }
+
+//! Key concept
+//* value of original vector is the index in the second array
