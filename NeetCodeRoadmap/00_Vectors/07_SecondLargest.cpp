@@ -20,6 +20,7 @@ void secondMaxElement(vector<int> &v){
             secondMax = v[i];
         }
     }
+    
     cout<<"\nMax element in the array: "<<max<<endl;
     cout<<"Second max element in the array: "<<secondMax<<endl;
 
