@@ -1,7 +1,8 @@
 {
     "files.associations": {
         "03_searchlinkedlist": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "list": "cpp"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }
