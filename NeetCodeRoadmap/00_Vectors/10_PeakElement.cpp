@@ -11,13 +11,20 @@ using namespace std;
 
 void findPeakElement(vector<int> &v){
     vector<int> temp;
-    for(int i=1; i<v.size()-1; i++){
-        if(v[i]>v[i+1] && v[i]>v[i-1]){
-            temp.push_back(v[i]);
+    for(int i=0; i<v.size(); i++){
+        if(i>0 || i<v.size()){
+            if(v[i]>v[i+1] && v[i]>v[i-1]){
+                temp.push_back(i);
+            }
+        }
+        if(i==0 || i==v.size()-1){
+            if(v[i]>v[i+1] || v[i]>v[i-1]){
+                temp.push_back(i);
+            }
         }
     }
-    
-    cout<<"\nPeak elements: ";
+
+    cout<<"\nPeak elements index: ";
     for(int i=0; i<temp.size(); i++){
        cout<<temp[i]<<" ";
     }
