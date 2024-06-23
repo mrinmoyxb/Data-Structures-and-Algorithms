@@ -58,6 +58,40 @@ void pointer3(){
 }
 
 
+//* COPY POINTERS:
+void pointer4(){
+    int num = 100;
+    int *ptr = &num;
+    int *copyPointer = ptr;
+
+    cout<<"\nCopy Pointer(VALUES): "<<endl;
+    cout<<"num: "<< num<<endl;
+    cout<<"*ptr: "<< *ptr<<endl;
+    cout<<"*copy pointer: "<< *copyPointer<<endl;
+
+    cout<<"\nCopy Pointer(ADDRESS): "<<endl;
+    cout<<"&num: "<< &num<<endl;
+    cout<<"ptr: "<< ptr<<endl;
+    cout<<"copyPointer: "<< copyPointer<<endl;
+
+    cout<<"\nUpdating value using copy pointer: "<<endl;
+    cout<<"(*copyPointer) += 100: "<<endl;
+    (*copyPointer) += 100;
+    cout<<"num: "<<num<<endl;
+    cout<<"*ptr: "<<*ptr<<endl;
+    cout<<"*copyPointer: "<<*copyPointer<<endl;
+
+    cout<<"\nUpdating the address using copy pointer: "<<endl;
+    cout<<"copyPointer + 1"<<endl;
+    copyPointer += 1;
+    cout<<"&num: "<<&num<<endl;
+    cout<<"ptr: "<<ptr<<endl;
+    cout<<"copyPointer: "<<copyPointer<<endl;
+    cout<<"num: "<<num<<endl;
+    cout<<"*ptr: "<<*ptr<<endl;
+    cout<<"*copyPointer: "<<*copyPointer<<endl;
+}
+
 
 int main(){
 
@@ -66,7 +100,8 @@ int main(){
     pointer2();
     cout<<endl;
     pointer3();
-
+    cout<<endl;
+    pointer4();
     return 0;
 }
 
@@ -84,4 +119,10 @@ int main(){
 //* when I increment the size using < ptr + 1 >; we shift the ptr to the next location hence the value the address points also changes.
 //* The address of < ptr > and < &num > will be different after < ptr + 1 > 
 //* The new address of < ptr > stores new value which is different from num
+
+//! Important Concept
+//* When I create a copy pointer: < int *copy = ptr > both *copy and *ptr refers to same value, hence i can perform manipualtions using *copy
+//* When I increment the address the copy is storing by 1: < copy += 1 > it doesn't affect the address the ptr is storing,
+//* The address stored as well as the value inside < copy > and < copy > pointing gets updated.
+
 
