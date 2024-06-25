@@ -77,6 +77,10 @@ void nodesWithEvenValues(Node* &head){
     }
 }
 
+void deleteHead(Node* &head){
+    head = head->next;
+}
+
 
 
 int main(){
