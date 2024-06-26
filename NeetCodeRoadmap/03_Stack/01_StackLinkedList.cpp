@@ -67,6 +67,16 @@ class Stack{
         cout<<"Top element: "<<head->data<<endl;
     }
 
+    void numberOfElements(){
+        int count = 0;
+        Node* temp = head;
+        while(temp!=NULL){
+            count++;
+            temp = temp->next;
+        }
+        cout<<"Count: "<<count<<endl;
+    }
+
 };
 
 int main(){
