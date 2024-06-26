@@ -35,9 +35,14 @@ class Stack{
     }
 
     void display(){
-        cout<<"\nStack is: "<<endl;
-        for(int i=top; i>=0; i--){
-            cout<<stack[i]<<endl;
+        if(top>-1){
+            cout<<"\nStack is: "<<endl;
+            for(int i=top; i>=0; i--){
+                cout<<stack[i]<<endl;
+            }
+        }
+        else{
+            cout<<"Stack is empty!!"<<endl;
         }
     }
 
@@ -51,6 +56,24 @@ class Stack{
 
     void topElement(){
         cout<<"Top element: "<<stack[top]<<endl;
+    }
+
+    void deleteStack(){
+        char option;
+        cout<<"\nAre you sure to delete the stack(y/n): ";
+        cin>>option;
+        if(option=='y' || option=='Y'){
+            top = -1;
+            delete []stack;
+            display();
+        }
+        else if(option=='n' || option=='N'){
+            cout<<"Okay"<<endl;
+            display();
+        }
+        else{
+            cout<<"Insert a valid response!";
+        }
     }
 };
 
@@ -70,5 +93,7 @@ int main(){
     s.display();
     s.noOfElements();
     s.topElement();
+
+    s.deleteStack();
     return 0;
 }
