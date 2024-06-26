@@ -11,6 +11,13 @@ class Node{
         this->data = data;
         this->next = NULL;
     }
+
+    ~Node(){
+        if(this->next != NULL){
+            delete next;
+            this->next = NULL;
+        }
+    }
 };
 
 //* here I am using < &head > to use as a reference instead of creating a copy of the linked list
@@ -43,7 +50,7 @@ void insertAtMid(Node* &head, int data, int position){
 }
 
 void display(Node* &head){
-    cout<<"Linked List: "<<endl;
+    cout<<"\nLinked List: "<<endl;
     Node* temp = head;
     while(temp!= NULL){
         cout<<temp->data<<" ";
@@ -77,8 +84,26 @@ void nodesWithEvenValues(Node* &head){
     }
 }
 
-void deleteHead(Node* &head){
-    head = head->next;
+void deleteNode(Node* &head, int position){
+    if(position==1){
+        Node *temp = head;
+        head = head->next;
+        temp->next = NULL;
+        delete temp;
+    }
+    else{
+        Node* current = head;
+        Node* previous = NULL;
+        int count = 1;
+        while(count<position){
+            previous = current;
+            current = current -> next;
+            count++;
+        }
+        previous->next = current->next;
+        current->next = NULL;
+        delete current;
+    }
 }
 
 
@@ -93,8 +118,7 @@ int main(){
     insertAtTail(head, 1000);
     insertAtMid(head, 69, 4);
     display(head);
-    //int length = LengthOfLinkedList(head);
-    //cout<<"Length of linked list: "<<length<<endl;
-    nodesWithEvenValues(head);
+    deleteNode(head, 7);
+    display(head);
     return 0;
 }

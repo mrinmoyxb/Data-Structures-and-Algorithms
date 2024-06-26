@@ -3,7 +3,8 @@
         "03_searchlinkedlist": "cpp",
         "iostream": "cpp",
         "list": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "new": "cpp"
     },
     "C_Cpp.errorSquiggles": "enabled",
     "editor.fontSize": 20

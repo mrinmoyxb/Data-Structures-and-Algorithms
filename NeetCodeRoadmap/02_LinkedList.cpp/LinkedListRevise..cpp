@@ -10,6 +10,10 @@ class Node{
         this->data = data;
         this->nextNodeAddress = NULL;
     }
+
+    ~Node(){
+
+    }
 };
 
 void insertAtHead(Node* &head, int data){
