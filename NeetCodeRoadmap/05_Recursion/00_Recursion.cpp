@@ -48,15 +48,27 @@ int funcOfPower(int n){
     return 2*funcOfPower(n-1);
 }
 
+void reachHome(int source, int destination){
+    cout<<"Source: "<<source<<", Destination: "<<destination<<endl;
+    if(source==destination){
+        cout<<"Reached"<<endl;
+        return;
+    }
+    reachHome(source+=1, destination);
+}
+
 int main(){
     ///printName(1, 5);
     //printNto1(10);
     backtracking(3);
     int p = funcOfPower(5);
     cout<<p<<endl;
+    reachHome(1, 10);
     return 0;
 }
 
 //! Concept
 //* Think of base condition first
+//* Think of only one case, we need to solve just one case, other cases will solve automatically
+//* Then, Think how will i reach the base case
 //* Design step1 and step2 clearly
