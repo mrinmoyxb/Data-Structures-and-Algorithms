@@ -4,7 +4,9 @@
         "iostream": "cpp",
         "list": "cpp",
         "ostream": "cpp",
-        "new": "cpp"
+        "new": "cpp",
+        "source_location": "cpp",
+        "stacktrace": "cpp"
     },
     "C_Cpp.errorSquiggles": "enabled",
     "editor.fontSize": 20

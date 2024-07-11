@@ -1,4 +1,6 @@
 #include <iostream>
+#include <vector>
+#include <bits/stdc++.h> 
 using namespace std;
 
 class Node{
@@ -62,16 +64,35 @@ Node* rotate(Node* &head, int k){
     
 }
 
+
+
 int main(){
     Node* node1 = new Node(1);
     Node* head = node1;
 
     insertAtHead(head, 11);
     insertAtHead(head, 10);
-    cout<<"\nLength of linkd list: "<<lengthOfList(head)<<endl;
-    display(head);
+    // cout<<"\nLength of linkd list: "<<lengthOfList(head)<<endl;
+    // display(head);
 
-    Node* x = rotate(head, 1);
-    display(x);
+    vector<int> v;
+    v.push_back(100);
+    v.push_back(2);
+    v.push_back(40);
+    v.push_back(5);
+
+    cout<<"\nVec"<<endl;
+    for(int i=0; i<v.size(); i++){
+        cout<<v[i]<<" ";
+    }
+
+    sort(v.begin(), v.end());
+
+    cout<<"\nVec"<<endl;
+    for(int i=0; i<v.size(); i++){
+        cout<<v[i]<<" ";
+    }
+
+    
     return 0;
 }
