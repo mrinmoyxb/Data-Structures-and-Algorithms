@@ -66,11 +66,23 @@ void preorder(Node* root){
     preorder(root->right);
 }
 
+
+int calNodes(Node* root){
+    if(root==NULL){
+        return 0;
+    }
+    int left = calNodes(root->left);
+    int right = calNodes(root->right);
+    return left+right+1;
+}
+
 int main(){
     Node* root = BuildTree(root);
     cout<<"\nInorder: "<<endl;
     inorder(root);
     cout<<"\nPreorder: "<<endl;
     preorder(root);
+
+    cout<<"\n Nodes: "<<calNodes(root);
     return 0;
 }
