@@ -38,6 +38,22 @@ void insertAtMid(Node* &head, int data, int position){
     current->next = newNode;
 }
 
+Node* reverseLinkedList(Node* &head){
+    if(head==NULL){
+        return head;
+    }
+    Node* current = head;
+    Node* prev = NULL;
+    Node* forward = NULL;
+    while(current!=NULL){
+        forward = current->next;
+        current->next = prev;
+        prev = current;
+        current = forward;
+    }
+    return prev;
+}
+
 void display(Node* head){
     Node* current = head;
     cout<<"Linked List: "<<endl;
@@ -55,8 +71,13 @@ int main(){
     insertAtHead(head, 400);
     insertAtTail(head, 1000);
     display(head);
+
     cout<<endl;
     insertAtMid(head, 1000, 3);
     display(head);
+
+    cout<<endl;
+    Node* rev = reverseLinkedList(head);
+    display(rev);
     return 0;
 }
