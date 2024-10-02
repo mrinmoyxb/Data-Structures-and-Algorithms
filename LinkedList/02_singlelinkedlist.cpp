@@ -81,7 +81,26 @@ Node* reverseALinkedList(Node* head){
     return prev;
 }
 
-
+void deleteElement(Node* &head, int element){
+    Node* current = head;
+    Node* prev = NULL;
+    if(head->data == element){
+        Node* temp = head;
+        head = current->next;
+        delete temp;
+    }
+    else{
+        while(current!=NULL){
+            if(current->data == element){
+                prev->next = current->next;
+                current = current->next;
+            }else{
+                prev = current;
+                current = current->next;
+            }          
+        }
+    }
+}
 
 int main(){
     Node* node1 = new Node(100);
@@ -94,8 +113,11 @@ int main(){
     display(head);
     findMidElement(head);
 
-    cout<<"\nReverse Linked List: "<<endl;
-    Node* rev = reverseALinkedList(head);
-    display(rev);
+    // cout<<"\nReverse Linked List: "<<endl;
+    // Node* rev = reverseALinkedList(head);
+    // display(rev);
+
+    deleteElement(head, 1000);
+    display(head);
     return 0;
 }
