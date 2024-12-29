@@ -41,7 +41,29 @@ void arr(){
     }
 }
 
+
+void pointersAndArray(){
+    int arr[5] = {1, 2, 3, 4, 5};
+    int *ptr = arr;
+    int *ptr1 = &arr[0];
+    cout<<"Address of first element of array using arr: "<<arr<<endl;
+    cout<<"Address of first element of array using &arr: "<<&arr<<endl;
+    cout<<"Address of first element of array using &arr[0]: "<<&arr<<endl;
+    cout<<"Address of first element of array using ptr: "<<ptr<<endl;
+    cout<<"Address of first element of array using ptr1: "<<ptr1<<endl;
+    cout<<endl;
+
+    //! sizeof(arr): returns the size of entire array
+    cout<<"Size of array: "<<sizeof(arr)<<endl;
+    cout<<"Size of first element: "<<sizeof(arr[0])<<endl;
+    cout<<"Size of first element: "<<sizeof(*arr)<<endl;
+
+    //! arr = arr + 1 is wrong
+    //! ptr = ptr + 1 is right
+}
+
 int main(){
-    arr();
+    //arr();
+    pointersAndArray();
     return 0;
 }

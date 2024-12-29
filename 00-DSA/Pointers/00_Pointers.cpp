@@ -48,6 +48,11 @@ void pointers2(){
     cout<<"*ptr4: "<<*ptr4<<endl;
     cout<<"*ptr4: "<<(void*)ptr4<<endl;
     cout<<"&var: "<<(void*)&var<<endl;
+
+    cout<<endl;
+    cout<<"Size of pointers: "<<endl;
+    cout<<"ptr1 int: "<<sizeof(ptr1)<<endl;
+    cout<<"ptr4 char: "<<sizeof(ptr4)<<endl;
     
 }
 
@@ -174,7 +179,7 @@ void pointers7(){
 }
 
 int main(){
-    pointers7();
+    pointers2();
 }
 
 

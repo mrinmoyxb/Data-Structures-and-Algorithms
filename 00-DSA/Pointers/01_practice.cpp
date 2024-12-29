@@ -47,6 +47,24 @@ void question5(){
     cout  << a << "  " << *c << endl;
 }
 
+void question6(){
+    void check(){
+    int first = 10;
+    int *p = &first;
+    int **q = &p;
+    cout<<"First: "<<first<<endl;
+    int second = ++(**q);
+    cout<<first<<endl;
+    cout<<second<<endl;
+    int *r = *q; //! here *q returns address and *r is value at that address
+    cout<<*q<<endl;
+    cout<<*r<<endl;
+    ++(*r);
+    cout<<first<<"    "<<second<<endl;
+}
+
+}
+
 int main(){
     // question1();
     // question2();
