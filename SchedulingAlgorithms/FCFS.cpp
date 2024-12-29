@@ -1,5 +1,33 @@
 #include <iostream>
+#include <iomanip>
 using namespace std;
+
+void calculateThroughput(int completionTime[], int arrivalTime[], int numOfProcesses){
+    int maxCT = 0, minAT = 0;
+
+    //* Max Completion Time
+    for(int i=0; i<numOfProcesses; i++){
+        if(completionTime[i]>maxCT){
+            maxCT = completionTime[i];
+        }
+    }
+
+    //* Min Arrival Time
+    for(int i=0; i<numOfProcesses; i++){
+        if(arrivalTime[i]<minAT){
+            minAT = arrivalTime[i];
+        }
+    }
+
+    //* Scheduling Length = max(CT) - min(AT)
+    int schedulingLength = maxCT - minAT;
+
+    //* Throughput = Number of processes / Scheduling Length
+    float throughput = float(numOfProcesses) / schedulingLength;
+
+    cout<<"Scheduling Length: "<<fixed<<setprecision(2)<<schedulingLength<<endl;
+    cout<<"Throughput: "<<fixed<<setprecision(2)<<throughput<<endl;
+}
 
 void fcfs(int numOfProcesses, int burstTimes[]){
     int arrivalTime[numOfProcesses] = {0};
@@ -7,11 +35,11 @@ void fcfs(int numOfProcesses, int burstTimes[]){
     int turnAroundTime[numOfProcesses];
     int waitingTime[numOfProcesses];
 
-    int avgTAT, avgWT;
+    float avgTAT, avgWT;
     int sum = 0;
     float tat=0.0, wt=0.0;
 
-    //* completion time
+    //* Completion time
     for(int i=0; i<numOfProcesses; i++){
         sum = sum + burstTimes[i];
         completionTime[i] = sum;
@@ -37,12 +65,16 @@ void fcfs(int numOfProcesses, int burstTimes[]){
         tat = tat + turnAroundTime[i];
         wt = wt + waitingTime[i];
     }
-    avgTAT = tat / float(numOfProcesses);
-    avgWT = wt / float(numOfProcesses);
+    avgTAT = float(tat) / float(numOfProcesses);
+    avgWT = float(wt) / float(numOfProcesses);
 
-    cout<<"Average Turnaround Time: "<<avgTAT<<endl;
-    cout<<"Average Waiting Time: "<<avgWT<<endl;
+    cout<<"\nAverage Turnaround Time: "<<fixed<<setprecision(2)<<avgTAT<<endl;
+    cout<<"Average Waiting Time: "<<fixed<<setprecision(2)<<avgWT<<endl;
+
+    calculateThroughput(completionTime, arrivalTime, numOfProcesses);
 }
+
+
 
 int main(){
     int numOfProcess;
@@ -61,5 +93,6 @@ int main(){
     
 
     fcfs(numOfProcess, burstTimes);
+
     return 0;
 }
