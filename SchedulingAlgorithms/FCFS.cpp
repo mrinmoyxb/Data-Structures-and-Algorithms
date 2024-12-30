@@ -74,8 +74,6 @@ void fcfs(int numOfProcesses, int burstTimes[]){
     calculateThroughput(completionTime, arrivalTime, numOfProcesses);
 }
 
-
-
 int main(){
     int numOfProcess;
     cout<<"Enter the number of processes: ";
