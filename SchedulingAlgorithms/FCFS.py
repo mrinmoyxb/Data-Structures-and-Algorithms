@@ -1,4 +1,8 @@
-def avgCalTime(numOfProcess, at, ct, tat, wt):
+
+#! FCFS is a non-preemptive CPU scheduling algorithm
+#! Assuming arrival time is zero for all processes 
+
+def caclulateAvg(numOfProcess, at, ct, tat, wt):
     avgTAT = sum(tat)/len(tat)
     avgWT = sum(wt)/len(wt)
     print(f"\nAverage Turnaround time: {round(avgTAT, 2)}")
@@ -28,9 +32,9 @@ def calculateTime(numOfProcess, burstTimes):
         print(f"P{i}                    {arrivalTime[i]}                   {burstTimes[i]}                   {completionTime[i]}                       {turnaroundTime[i]}                        {waitingTime[i]}")
 
     
-    avgCalTime(numOfProcess, arrivalTime, completionTime, turnaroundTime, waitingTime)
+    caclulateAvg(numOfProcess, arrivalTime, completionTime, turnaroundTime, waitingTime)
 
-def fcfs():
+def firstComeFirstServed():
     numOfProcesses = int(input("Enter the number of processes: "))
     burstTimes = []
     for i in range(numOfProcesses):
@@ -38,4 +42,4 @@ def fcfs():
         burstTimes.append(burstTime)
     calculateTime(numOfProcesses, burstTimes)
 
-fcfs()
+firstComeFirstServed()
