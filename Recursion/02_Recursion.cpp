@@ -55,8 +55,8 @@ void checkComposite(int num){
     for(int i=2; i<num; i++){
         if(num%i==0){
             isComposite = true;
+            break;
         }
-        break;
     }
     if(isComposite==true){
         cout<<num<<" is a composite number"<<endl;
@@ -127,7 +127,7 @@ int main(){
     checkPrime(10);
 
     cout<<"\nComposite numbers: "<<endl;
-    checkComposite(4);
+    checkComposite(10);
 
     cout<<"\nFactorial number: "<<factorial(6)<<endl;
 
