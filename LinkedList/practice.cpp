@@ -60,6 +60,22 @@ void findMidElement(Node* &head){
     cout<<"Mid element: "<<current->data<<endl;
 }
 
+Node* reverseLinkedList(Node* &head){
+    if(head==NULL){
+        return head;
+    }
+    Node* prev = NULL;
+    Node* current = head;
+    Node* forward = NULL;
+    while(current!=NULL){
+        forward = current->next;
+        current->next = prev;
+        prev = current;
+        current = forward;
+    }
+    return prev;
+}
+
 void display(Node* &head){
     Node* current = head;
     cout<<"\nLinked List: "<<endl;
@@ -80,5 +96,9 @@ int main(){
     display(head);
     cout<<"\nLength of linked list: "<<lengthOfList(head)<<endl;
     findMidElement(head);
+
+    cout<<"\nReverse linked list: "<<endl;
+    Node* rev = reverseLinkedList(head);
+    display(rev);
     return 0;
 }
