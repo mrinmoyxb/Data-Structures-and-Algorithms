@@ -76,6 +76,32 @@ Node* reverseLinkedList(Node* &head){
     return prev;
 }
 
+//! Linear search 
+void linearSearch(Node* head, int key){
+    Node* current = head;
+    while(current!=NULL){
+        if(current->data==key){
+            cout<<"Found"<<endl;
+            break;
+        }
+    }
+}
+
+//! Linear search using recursion
+bool linearSearchRec(Node* head, int key){
+    if(head==NULL){
+        return false;
+    }
+
+    if(head->data==key){
+        return true;
+    }
+    else{
+        return linearSearchRec(head->next, key);
+    }
+
+}
+
 void display(Node* &head){
     Node* current = head;
     cout<<"\nLinked List: "<<endl;
@@ -100,5 +126,11 @@ int main(){
     cout<<"\nReverse linked list: "<<endl;
     Node* rev = reverseLinkedList(head);
     display(rev);
+
+    cout<<"\nLinear search: "<<endl;
+    linearSearch(head, 400);
+
+    cout<<"\nLinear search using recursion: "<<endl;
+    cout<<linearSearchRec(head, 800)<<endl;
     return 0;
 }
