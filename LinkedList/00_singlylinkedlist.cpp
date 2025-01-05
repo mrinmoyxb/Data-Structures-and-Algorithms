@@ -95,6 +95,7 @@ void deleteMid(Node* &head){
     delete deleteNode;
 }
 
+//! Delete element at any position 
 void deleteNode(Node* &head, int position){
     try{
         int length = lengthOfLinkedList(head);
@@ -127,6 +128,8 @@ void deleteNode(Node* &head, int position){
     }
     
 }
+
+
 
 int main(){
     Node* node1 = new Node(100);
