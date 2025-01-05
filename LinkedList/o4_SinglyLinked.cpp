@@ -39,7 +39,11 @@ void checkingDuplicates(Node* &head, map<int, int> &duplicates){
         current = current->next;
     }
 
-    
+    cout<<"\n\nElements and their duplicates: "<<endl;
+    for(i = duplicates.begin(); i!=duplicates.end(); i++){
+        cout<<i->first<<" : "<<i->second<<endl;
+    }
+
     for(i = duplicates.begin(); i!=duplicates.end(); i++){
         if(i->second > max){
             max = i->second;
@@ -48,31 +52,101 @@ void checkingDuplicates(Node* &head, map<int, int> &duplicates){
     }
 
     cout<<"\nElement with most duplicates: "<<value<<endl;
+}
 
-    
+//! Findig and removing duplicates
+void removingDuplicates(Node* &head){
+    map<int, int> duplicates;
+    map<int, int>::iterator i;
+
+    Node* current = head;
+    while(current!=NULL){
+        duplicates[current->data] = duplicates[current->data] + 1;
+        current = current->next;
+    }
+
+    cout<<"\nDuplicate elements in the linked list: "<<endl;
+    for(i = duplicates.begin(); i!=duplicates.end(); i++){
+        cout<<i->first<<" : "<<i->second<<endl;
+    }
+
+    int max = 0;
+    int element = 0;
+
+    for(i = duplicates.begin(); i!=duplicates.end(); i++){
+        if(i->second > max){
+            max = i->second;
+            element = i->first;
+        }
+    }
+
+    cout<<"Element with most duplicates: "<<element<<endl;
+
+    if(head->data==element){
+        Node* del = head;
+        head = head->next;
+        delete del;
+    }
+    Node* prev = NULL;
+    current = head;
+    while(current!=NULL){
+        if(current->data == element){
+            Node* del = current;
+            prev->next = prev->next->next;
+            current = prev->next;
+            delete del;
+        }else{
+            prev = current;
+            current = current->next;
+        }
+    }
+}
+
+//! Removing a value from list
+void check(Node* &head, int element){
+    if(head->data==element){
+        Node* del = head;
+        head = head->next;
+        delete del;
+    }
+    Node* prev = NULL;
+    Node* current = head;
+    while(current!=NULL){
+        if(current->data == element){
+            Node* del = current;
+            prev->next = prev->next->next;
+            current = prev->next;
+            delete del;
+        }else{
+            prev = current;
+            current = current->next;
+        }
+    }
 }
 
 int main(){
     map<int, int> duplicates;
     map<int, int>::iterator i;
 
-    Node* node = new Node(100);
+    Node* node = new Node(300);
     Node* head = node;
     insertAtHead(head, 300);
     insertAtHead(head, 300);
+    insertAtHead(head, 900);
     insertAtHead(head, 300);
-    insertAtHead(head, 100);
 
     cout<<"Linked list: "<<endl;
     display(head);
-
-    checkingDuplicates(head, duplicates);
-
-    cout<<"\nElements and their duplicates: "<<endl;
-    for(i = duplicates.begin(); i!=duplicates.end(); i++){
-        cout<<i->first<<" : "<<i->second<<endl;
-    }
     
+    // checkingDuplicates(head, duplicates);
+
+    // check(head, 300);
+    // cout<<"\nLinked list: "<<endl;
+    // display(head);
+    
+    removingDuplicates(head);
+    cout<<"\nLinked list: "<<endl;
+    display(head);
 
     return 0;
 }
