@@ -9,7 +9,8 @@
         "stacktrace": "cpp",
         "deque": "cpp",
         "string": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "stack": "cpp"
     },
     "C_Cpp.errorSquiggles": "enabled",
     "editor.fontSize": 20
