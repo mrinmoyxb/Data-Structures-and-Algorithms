@@ -124,6 +124,17 @@ void check(Node* &head, int element){
     }
 }
 
+//! Finding mid using two pointers approach
+Node* findMid(Node* &head){
+    Node* slow = head;
+    Node* fast = head;
+    while(fast!=NULL && fast->next!=NULL){
+        fast = fast->next->next;
+        slow = slow->next;
+    }
+    return slow;
+}
+
 int main(){
     map<int, int> duplicates;
     map<int, int>::iterator i;
@@ -131,9 +142,9 @@ int main(){
     Node* node = new Node(300);
     Node* head = node;
     insertAtHead(head, 300);
-    insertAtHead(head, 300);
+    insertAtHead(head, 3000);
     insertAtHead(head, 900);
-    insertAtHead(head, 300);
+    insertAtHead(head, 3000);
 
     cout<<"Linked list: "<<endl;
     display(head);
@@ -144,9 +155,12 @@ int main(){
     // cout<<"\nLinked list: "<<endl;
     // display(head);
     
-    removingDuplicates(head);
-    cout<<"\nLinked list: "<<endl;
-    display(head);
+    // removingDuplicates(head);
+    // cout<<"\nLinked list: "<<endl;
+    // display(head);
+
+    Node* mid = findMid(head);
+    cout<<"\nMid element: "<<mid->data<<endl;
 
     return 0;
 }
