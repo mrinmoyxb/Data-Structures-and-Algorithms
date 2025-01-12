@@ -58,6 +58,14 @@ void reverseArrayUsingRecursion2(int* &arr, int start, int end){
     reverseArrayUsingRecursion2(arr, start+1, end-1);
 }
 
+void reverseArrayUsingRecursion3(int* arr, int size){
+    if(size==0){
+        return;
+    }
+    reverseArrayUsingRecursion3(arr+1, size-1);
+    std::cout<<*arr<<std::endl;
+}
+
 int main(){
     displayNumbers(5);
     std::cout<<std::endl;
