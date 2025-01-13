@@ -72,11 +72,6 @@ int main(){
     displayReverse(5);
     std::cout<<std::endl;
 
-    // std::string word = "Apple";
-    // std::string *ptr = &word;
-    // std::cout<<ptr<<std::endl;
-    // std::cout<<*ptr<<std::endl;
-
     int *arr = new int[5];
     std::cout<<"\nEnter elements: "<<std::endl;
     for(int i=0; i<5; i++){
@@ -91,11 +86,7 @@ int main(){
     std::cout<<std::endl;
     std::cout<<"\nReverse array using recursion"<<std::endl;
     int size = 5;
-    // reverseArrayUsingRecursion(arr, 0, size-1);
 
-    // for(int i=0; i<size; i++){
-    //     std::cout<<arr[i]<<" ";
-    // }
     reverseArrayUsingRecursion1(arr, size);
     return 0;
 }
