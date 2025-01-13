@@ -2,7 +2,6 @@
 
 //! Bubble sort
 void bubbleSort(int *arr, int size){
-    int k = 1;
     for(int i=0; i<size-1; i++){
         for(int j=0; j<size-i-1; j++){
             if(arr[j]>arr[j+1]){
@@ -27,6 +26,22 @@ void bubbleSortUsingRecursion(int *arr, int size){
     bubbleSortUsingRecursion(arr, size-1);
 }
 
+void bubbleSortOptimised(int *arr, int size){
+    for(int i=0; i<size-1; i++){
+        bool isSwap = false;
+        for(int j=0; j<size-i-1; j++){
+            if(arr[j]>arr[j+1]){
+                std::swap(arr[j], arr[j+1]);
+            }
+        }
+
+        if(!isSwap){
+            return;
+        }
+    }
+}
+
+
 int main(){
     int *arr = new int[5];
     int *arr1 = new int[5];
@@ -40,7 +55,8 @@ int main(){
         arr1[i] = element;
     }
 
-    bubbleSortUsingRecursion(arr1, 5);
+    //bubbleSortUsingRecursion(arr1, 5);
+    bubbleSortOptimised(arr1, 5);
 
     std::cout<<"\nSorted array: "<<std::endl;
     for(int i=0; i<5; i++){
