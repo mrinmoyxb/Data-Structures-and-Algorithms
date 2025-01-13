@@ -32,7 +32,19 @@ bool checkPalindromeUsingRecursion(int *arr, int start, int end){
         return false;
     }
     else{
-        checkPalindromeUsingRecursion(arr, start+1, end-1);
+        return checkPalindromeUsingRecursion(arr, start+=1, end-=1);
+    }
+}
+
+bool checkPalindromeString(std::string str, int start, int end){
+    if(start>end){
+        return true;
+    }
+
+    if(str[start]!=str[end]){
+        return false;
+    }else{
+        return checkPalindromeString(str, start+1, end-1);
     }
 }
 
@@ -43,7 +55,7 @@ int main(){
     std::cout<<"Reverse word: "<<word<<std::endl;
 
     int *arr = new int[5];
-    std::cout<<"Enter elemenets: "<<std::endl;
+    std::cout<<"\nArray: "<<std::endl;
     for(int i=0; i<5; i++){
         int element;
         std::cout<<"Enter element: ";
@@ -52,6 +64,9 @@ int main(){
     }
 
     std::cout<<"Check Palindrome: "<<checkPalindrome(arr, 5)<<std::endl;
-    std::cout<<"Check Palindrome Using Recursion: "<<checkPalindromeUsingRecursion(arr, 0, 5)<<std::endl;
+    std::cout<<"Check Palindrome Using Recursion: "<<checkPalindromeUsingRecursion(arr, 0, 5-1)<<std::endl;
+    
+    std::string w = "mom";
+    std::cout<<"Is the word a palindrome: "<<checkPalindromeString(w, 0, w.length()-1)<<std::endl;
     return 0;
 }
