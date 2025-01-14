@@ -81,19 +81,33 @@ bool binarySearch(Node* head, int key){
         }
         temp->next = NULL;
         bool result = binarySearch(leftHead, key);
+        temp->next = mid;
         return result;
     }
+}
+
+//! Check even num in linked list 
+void checkNum(Node* head){
+    if(head==NULL){
+        return;
+    }
+
+    if(head->data%2==0){
+        std::cout<<head->data<<" is even"<<std::endl;
+    }
+    checkNum(head->next);
 }
 
 int main(){
     Node* node = new Node(600);
     Node* head = node;
-    insertAtHead(head, 500);
+    insertAtHead(head, 533);
     insertAtHead(head, 400);
-    insertAtHead(head, 300);
-    insertAtHead(head, 200);
+    insertAtHead(head, 789);
+    insertAtHead(head, 233);
     insertAtHead(head, 100);
     displayWithoutRecursion(head);
+    Node* copyHead = head;
 
     std::cout<<std::endl;
     std::cout<<"\nDisplay with recursion"<<std::endl;
@@ -111,5 +125,8 @@ int main(){
     std::cout<<"\nEnter key: ";
     std::cin>>key;
     std::cout<<"Binary search: "<<binarySearch(head, key)<<std::endl;
+
+    std::cout<<std::endl;
+    checkNum(copyHead);
     return 0;
 }
