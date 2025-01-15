@@ -2,6 +2,8 @@
 #include <map>
 
 std::map<int, int> hashTable;
+int bucketSize = 10;
+
 //! Division Method
 //! Algorithm: h(k) = k mod bucksetSize
 int divisionMethod(int k, int bucketSize){
@@ -19,7 +21,7 @@ void hashing(){
         std::cout<<"Enter element: ";
         std::cin>>element;
 
-        int hashValue = divisionMethod(element, 10);
+        int hashValue = divisionMethod(element, bucketSize);
         hashTable[hashValue] = element;
 
         std::cout<<"Want to add more? ";
@@ -38,8 +40,10 @@ void hashing(){
 //! Search in hash table: O(n)
 void search(int key, int bucketSize){
     int hashValue = divisionMethod(key, bucketSize);
+    std::cout<<hashValue<<std::endl;
+
     auto result = hashTable.find(hashValue);
-    if(result->second!=NULL){
+    if(result != hashTable.end()){
         std::cout<<"Available"<<std::endl;
         std::cout<<result->first<<" "<<result->second;
     }else{
@@ -49,5 +53,11 @@ void search(int key, int bucketSize){
 
 int main(){
     hashing();
+    
+    int key;
+    std::cout<<"\nEnter key: ";
+    std::cin>>key;
+    
+    search(key, bucketSize);
     return 0;
 }
