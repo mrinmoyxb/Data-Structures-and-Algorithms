@@ -85,18 +85,85 @@ bool binarySearch(Node* head, int key){
     }
 }
 
+//! Function to return max between two numbers
+int max(int num1, int num2){
+    return num1>num2 ? num1 : num2;
+}
+
+//! Function to return min between two numbers
+int min(int num1, int num2){
+    return num1>num2 ? num2 : num1;
+}
+
+//! Max element using recursion
+int maxInLinkedList(Node* head){
+    if(head->next==NULL){
+        return head->data;
+    }
+    return max(head->data, maxInLinkedList(head->next));
+}
+
+//! Min element using recursion
+int minInLinkedList(Node* head){
+    if(head->next==NULL){
+        return head->data;
+    }
+
+    return min(head->data, minInLinkedList(head->next));
+}
+
+//! Check sorted and unsorted
+bool checkSorted(Node* head){
+    Node* current = head;
+    bool isSorted = true;
+    while(current!=NULL && current->next!=NULL){
+        if(current->data > current->next->data){
+            isSorted = false;
+            break;
+        }
+        current = current->next;
+    }
+    return isSorted;
+}
+
+//! Check if the linked list is sorted using recursion
+bool checkSortedUsingRecursion(Node* head){
+    if(head==NULL){
+        return false;
+    }
+    if(head->next==NULL){
+        return true;
+    }
+
+    if(head->data > head->next->data){
+        return false;
+    }else{
+        return checkSortedUsingRecursion(head->next);
+    }
+}
+
 int main(){
     Node* node = new Node(800);
     Node* head = node;
     insertAtHead(head, 400);
     insertAtHead(head, 200);
-    insertAtHead(head, 100);
-    insertAtHead(head, 50);
+    insertAtHead(head, 900);
+    insertAtHead(head, 500);
     insertAtHead(head, 10);
 
     displayUsingRecursion(head);
     //std::cout<<"\nLinear search : "<<linearSearch(head, 200);
 
-    std::cout<<"\nBinary Search: "<<binarySearch(head, 900);
+    //std::cout<<"\nBinary Search: "<<binarySearch(head, 900);
+    std::cout<<std::endl;
+
+    // std::cout<<"\nMax Element: "<<maxInLinkedList(head);
+    // std::cout<<std::endl;
+
+    // std::cout<<"\nMin Element: "<<minInLinkedList(head);
+    // std::cout<<std::endl;
+
+    //std::cout<<"\nIs sorted: "<<checkSorted(head);
+    std::cout<<"\nIs sorted using recursion: "<<checkSortedUsingRecursion(head);
     return 0;
 }
