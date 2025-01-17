@@ -45,12 +45,20 @@ void insertAtMid(Node* &head, int data, int position){
 }
 
 //! Display using recursion
-void display(Node* head){
+void displayUsingRecursion(Node* head){
     if(head==NULL){
         return;
     }
     std::cout<<head->data<<" ";
-    display(head->next);
+    displayUsingRecursion(head->next);
+}
+
+void display(Node* head){
+    Node* current = head;
+    while(current!=NULL){
+        std::cout<<current->data<<" ";
+        current = current->next;
+    }
 }
 
 //! Reverse traverse
@@ -68,18 +76,98 @@ void reverseTraverse(Node* head){
     }
 }
 
+//! Reverse traverse Using recursion
+void reverseUsingRecursion(Node* head){
+    if(head==NULL){
+        return;
+    }
+
+    reverseUsingRecursion(head->next);
+    std::cout<<head->data<<" ";
+}
+
+//! Linear search
+bool linearSearch(Node* head, int key){
+    if(head==NULL){
+        return false;
+    }
+
+    if(head->data == key){
+        return true;
+    }else{
+        return linearSearch(head->next, key);
+    }
+}
+
+//! Length of linked list
+int lengthOfLinkedList(Node* head){
+    Node* current = head;
+    int count = 0;
+    while(current!=NULL){
+        count+=1;
+        current = current->next;
+    }
+    return count;
+}
+
+//! Find mid
+void midOfLinkedList(Node* head){
+    Node* current = head;
+    int length = lengthOfLinkedList(head);
+    int mid = (length/2)+1;
+    int count = 1;
+    while(count<mid){
+        current = current->next;
+        count+=1;
+    }
+    std::cout<<current->data<<std::endl;
+}
+
+//! Mid element 
+Node* findMid(Node* start, Node* end){
+    Node* slow = start;
+    Node* fast = start;
+    while(fast!=end && fast->next!=end){
+        fast = fast->next->next;
+        slow = slow->next;
+    }
+    return slow;
+}
+
+//! Binary search
+bool binarySearch(Node* start, Node* end, int key){
+    if(start==NULL){
+        return false;
+    }
+
+    Node* mid = findMid(start, end);
+    if(mid->data == key){
+        return true;
+    }
+
+    if(key > mid->data){
+        return binarySearch(mid->next, end, key);
+    }else{
+        return binarySearch(start, mid, key);
+    }
+}
+
 int main(){
-    Node* node = new Node(100);
+    Node* node = new Node(500);
     Node* head = node;
-    insertAtHead(head, 200);
-    insertAtHead(head, 300);
+    Node* temp = node;
     insertAtHead(head, 400);
-    insertAtHead(head, 500);
-    insertAtTail(head, 1000);
-    insertAtMid(head, 999, 3);
+    insertAtHead(head, 300);
+    insertAtHead(head, 200);
+    insertAtHead(head, 100);
+    insertAtTail(head, 1200);
+    insertAtMid(head, 250, 3);
 
     std::cout<<"\nLinked List: "<<std::endl;
     display(head);
-    reverseTraverse(head);
+
+    std::cout<<std::endl;
+    std::cout<<"Binary Search: "<<binarySearch(head, NULL, 200);
+
     return 0;
 }
