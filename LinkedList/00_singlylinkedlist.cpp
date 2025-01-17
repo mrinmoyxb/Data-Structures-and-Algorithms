@@ -129,7 +129,19 @@ void deleteNode(Node* &head, int position){
     
 }
 
+void print(Node* head){
+    Node* current = head;
+    std::cout<<"\n";
+    while(current!=NULL){
+        std::cout<<"data: "<<current->data<<"\n";
+        std::cout<<"&data: "<<&current->data<<"\n";
+        std::cout<<"current: "<<current<<"\n";
+        std::cout<<"next: "<<current->next<<"\n";
+        std::cout<<"\n";
 
+        current = current->next;
+    }
+}
 
 int main(){
     Node* node1 = new Node(100);
@@ -151,8 +163,15 @@ int main(){
     // deleteMid(head);
     // display(head);
 
-    deleteNode(head, 7);
-    display(head);
+    // deleteNode(head, 7);
+    // display(head);
+    print(head);
+
+    int num = 10;
+    int *ptr = &num;
+    cout<<"&num: "<<&num<<"\n";
+    cout<<"ptr: "<<ptr<<endl;
+    cout<<"&ptr: "<<&ptr<<endl;
 
     return 0;
 }
