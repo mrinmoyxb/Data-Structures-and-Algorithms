@@ -142,13 +142,28 @@ bool checkSortedUsingRecursion(Node* head){
     }
 }
 
+//! Check even or odd in linked list
+void checkEvenOdd(Node* head){
+    if(head==NULL){
+        return;
+    }
+ 
+    if(head->data%2==0){
+        std::cout<<head->data<<" is even"<<"\n";
+    }else{
+        std::cout<<head->data<<" is odd"<<"\n";
+    }
+    
+    checkEvenOdd(head->next);
+}
+
 int main(){
     Node* node = new Node(800);
     Node* head = node;
     insertAtHead(head, 400);
-    insertAtHead(head, 200);
+    insertAtHead(head, 213);
     insertAtHead(head, 900);
-    insertAtHead(head, 500);
+    insertAtHead(head, 119);
     insertAtHead(head, 10);
 
     displayUsingRecursion(head);
@@ -164,6 +179,8 @@ int main(){
     // std::cout<<std::endl;
 
     //std::cout<<"\nIs sorted: "<<checkSorted(head);
-    std::cout<<"\nIs sorted using recursion: "<<checkSortedUsingRecursion(head);
+    //std::cout<<"\nIs sorted using recursion: "<<checkSortedUsingRecursion(head);
+
+    checkEvenOdd(head);
     return 0;
 }
