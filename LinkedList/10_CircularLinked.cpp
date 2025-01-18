@@ -33,6 +33,16 @@ void insertAtLast(Node* &tail, int data){
     }
 }
 
+void deleteHead(Node* &tail){
+    if(tail==NULL){
+        return;
+    }else{
+        Node* deleteNode = tail->next;
+        tail->next = tail->next->next;
+        delete deleteNode;
+    }
+}
+
 void display(Node* tail){
     Node* head = tail->next;
     Node* current = head;
@@ -51,6 +61,9 @@ int main(){
     insertAtHead(tail, 300);
     insertAtLast(tail, 400);
     insertAtLast(tail, 500);
+    display(tail);
+
+    deleteHead(tail);
     display(tail);
     return 0;
 }

@@ -1,5 +1,4 @@
 #include <iostream>
-using namespace std;
 
 class Node{
     public:
@@ -13,23 +12,26 @@ class Node{
     }
 };
 
-Node* buildTree(Node* root){
-    cout<<"Enter the data: "<<endl;
+Node* buildTree(Node* &root){
     int data;
-    cin>>data;
-    root = new Node(data);
-
+    std::cout<<"Enter data: ";
+    std::cin>>data;
     if(data==-1){
         return NULL;
     }
+    root = new Node(data);
 
-    cout<<"Enter data for inserting in left of "<<data<<endl;
+    std::cout<<"Enter data for inserting in left of "<<data<<" : "<<"\n";
     root->left = buildTree(root->left);
-    cout<<"Enter data for inserting in right of"<<data<<endl;
+    std::cout<<"Enter data for inserting in the right of "<<data<<" : "<<"\n";
     root->right = buildTree(root->right);
+
     return root;
 }
 
 int main(){
+    Node* root = NULL;
+    root = buildTree(root);
+    
     return 0;
 }
