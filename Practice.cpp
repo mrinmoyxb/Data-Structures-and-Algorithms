@@ -41,6 +41,11 @@ int minElement(int *arr, int size){
     return min(*arr, minElement(arr+1, size-1));
 }
 
+void check(int *&arr){
+    cout<<"Address arr: "<<arr<<"\n";
+    cout<<"Address of arr(&arr): "<<&arr<<"\n";
+}
+
 int main(){
     int *arr = new int[5];
    
@@ -53,9 +58,14 @@ int main(){
         cout<<*(arr+i)<<endl;
     }
 
-    // cout<<"Is array sorted: "<<array1(arr, 5)<<endl;
-    cout<<"Max: "<<maxElement(arr, 5)<<endl;
-    cout<<"Min: "<<minElement(arr, 5)<<endl;
+    cout<<"Main: "<<"\n";
+    cout<<"Address arr: "<<arr<<"\n";
+    cout<<"Address of arr(&arr): "<<&arr<<"\n";
+    check(arr);
+
+    // // cout<<"Is array sorted: "<<array1(arr, 5)<<endl;
+    // cout<<"Max: "<<maxElement(arr, 5)<<endl;
+    // cout<<"Min: "<<minElement(arr, 5)<<endl;
 
     return 0;
 }

@@ -110,7 +110,75 @@ void concept6(){
     cout<<"cptr: "<<cptr<<"\n";
 }
 
+//! Copy pointer can only modify the original value until it points to that address
+void concept7(){
+    int num1 = 100;
+    int num2 = 999;
+
+    int* ptr = &num1;
+    int* cptr = ptr;
+
+    cout<<"Before: "<<"\n";
+    cout<<"Values: "<<"\n";
+    cout<<"num: "<<num1<<"\n";
+    cout<<"*ptr: "<<*ptr<<"\n";
+    cout<<"*cptr: "<<*cptr<<"\n";
+    std::cout<<"\n";
+
+    cout<<"Addresses: "<<"\n";
+    cout<<"&num: "<<&num1<<"\n";
+    cout<<"ptr: "<<ptr<<"\n";
+    cout<<"cptr: "<<cptr<<"\n";
+    std::cout<<"\n";
+
+    cout<<"After: "<<"\n";
+    cptr = &num2;
+
+    cout<<"Values: "<<"\n";
+    cout<<"num: "<<num1<<"\n";
+    cout<<"*ptr: "<<*ptr<<"\n";
+    cout<<"*cptr: "<<*cptr<<"\n";
+    std::cout<<"\n";
+
+    cout<<"Addresses: "<<"\n";
+    cout<<"&num: "<<&num1<<"\n";
+    cout<<"ptr: "<<ptr<<"\n";
+    cout<<"cptr: "<<cptr<<"\n";
+    std::cout<<"\n";
+}
+
+//! Reference and pointers
+//! Pass by value: here num is a copy pointer of number in main, hence copy pointer can point to different address
+//! The address of "copy pointer(&num)" and "pointer in main(&number)" are different
+void checkSum1(int* num){
+    cout<<"Address of pointer num: "<<&num<<"\n";
+    cout<<"address of num: "<<num<<"\n";
+    int value = 999;
+    num = &value;
+}
+
+//! Pass by reference
+//! Address of &num and &number is same
+void checkSum2(int* &num){
+    cout<<"Address of pointer num: "<<&num<<"\n";
+    cout<<"address of num: "<<num<<"\n";
+    num = new int(100);
+    cout<<"Address of pointer num: "<<&num<<"\n";
+    cout<<"address of num: "<<num<<"\n";
+}
+
 int main(){
-    concept6();
+    int *number = new int(100);
+    cout<<"Before: "<<*number<<"\n";
+    cout<<"Before: "<<number<<"\n";
+    cout<<"Address of pointer number: "<<&number<<"\n";
+
+    std::cout<<"\n";
+    checkSum2(number);
+
+    std::cout<<"\n";
+    cout<<"After: "<<*number<<"\n";
+    cout<<"After: "<<number<<"\n";
+    cout<<"Address of pointer number: "<<&number<<"\n";
     return 0;
 }
