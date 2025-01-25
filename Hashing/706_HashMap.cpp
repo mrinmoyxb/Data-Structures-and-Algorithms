@@ -3,8 +3,12 @@
 #include <list>
 
 class MyHashMap{
+    private:
     std::vector<int> hashTable;
     int size;
+    int getHashValue(int value){
+        return value%size;
+    }
 
     public:
     MyHashMap(){
