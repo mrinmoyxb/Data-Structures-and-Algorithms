@@ -58,7 +58,7 @@ Node* swap(Node* head, int k){
     return result;
 }
 
-int length(Node* head){
+int lengthOfLinkedList(Node* head){
     Node* current = head;
     int count = 0;
     while(current!=NULL){
@@ -69,17 +69,33 @@ int length(Node* head){
 }
 
 //! Approach2:
-// Node* swap1(Node* head, int k){
-//     Node* current = head;
-//     int l = length(head) - k;
-//     int count=1;
-//     int start, end;
-//     while(count!=l){
-//         if(count==k){
-//             start = 
-//         }
-//     }
-// }
+Node* swap1(Node* head, int k){
+    Node* current = head;
+    Node* start = NULL;
+    Node* end = NULL;
+
+    int count = 1;
+    int length = lengthOfLinkedList(head);
+
+    while(current!=NULL){
+        if(count==k){
+            start = current;
+            current = current->next;
+            count+=1;
+        }
+
+        if(count==(length-k)+1){
+            end = current;
+            current = current->next;
+            count+=1;
+        }
+        current = current->next;
+        count+=1;
+    }
+
+    std::swap(start->data, end->data);
+    return head;
+}
 
 int main(){
     Node* node = new Node(7);
@@ -93,10 +109,11 @@ int main(){
     insertAtTail(head, 0);
     insertAtTail(head, 9);
     insertAtTail(head, 5);
+
     displayUsingRec(head);
 
     std::cout<<"\n";
-    Node* r = swap(head, 5);
+    Node* r = swap1(head, 5);
     displayUsingRec(r);
     return 0;
 }
