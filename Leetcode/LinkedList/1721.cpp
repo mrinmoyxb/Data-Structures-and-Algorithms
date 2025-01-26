@@ -32,7 +32,7 @@ void displayUsingRec(Node* head){
     displayUsingRec(head->next);
 }
 
-//! My approach: Use array to swap
+//! Approach1: Use array to swap
 Node* swap(Node* head, int k){
     std::vector<int> vec;
     Node* current = head;
@@ -58,6 +58,28 @@ Node* swap(Node* head, int k){
     return result;
 }
 
+int length(Node* head){
+    Node* current = head;
+    int count = 0;
+    while(current!=NULL){
+        count+=1;
+        current = current->next;
+    }
+    return count;
+}
+
+//! Approach2:
+// Node* swap1(Node* head, int k){
+//     Node* current = head;
+//     int l = length(head) - k;
+//     int count=1;
+//     int start, end;
+//     while(count!=l){
+//         if(count==k){
+//             start = 
+//         }
+//     }
+// }
 
 int main(){
     Node* node = new Node(7);
