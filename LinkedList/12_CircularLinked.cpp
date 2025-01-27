@@ -54,7 +54,7 @@ void display(Node* &tail){
     do{
         std::cout<<current->data<<" ";
         current = current->next;
-    }while(current!=head);
+    }while(current->next!=head);
 }
 
 //! Length of linked list
