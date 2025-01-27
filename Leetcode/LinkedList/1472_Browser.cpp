@@ -39,6 +39,7 @@ class BrowserHistory{
         if(current->next!=NULL){
             Node* forward = current->next;
             current->next = newPage;
+            newPage->prev = current;
             current = newPage;
             delete forward;
             count+=1;
@@ -55,24 +56,34 @@ class BrowserHistory{
             int check = 0;
             while(check!=steps){
                 check+=1;
-                //Node* delPage = current;
                 current = current->prev;
-                //delete  delPage;
                 count-=1;
             }
             return current->data;
         }else{
-            return "Not possible";
+            Node* temp = homePage;
+            while(current!=temp){
+                current = current->prev;
+                count-=1;
+            }
+            return current->data;
         }
     }
 
-    // string forward(){
-    //     if(current->next!=NULL){
-
-    //     }else{
-
-    //     }
-    // }
+    string forward(int steps){
+        int remLength = length(current->next);
+        if(steps<=remLength){
+            int check = 0;
+            while(check!=steps){
+                check+=1;
+                current = current->next;
+                count+=1;
+            }
+            return current->data;
+        }else{
+            return "Cannot move forward any steps";
+        }
+    }
 
     void showPages(){
         Node* current = homePage;
@@ -89,24 +100,28 @@ class BrowserHistory{
 };
 
 int main(){
-    BrowserHistory b = BrowserHistory("web1.com");
-    b.visit("web2.com");
-    b.visit("web3.com");
-    b.visit("web4.com");
-    b.visit("web5.com");
-
-    b.showPages();
-    std::cout<<"\nCurrent after back 2: "<<b.back(2)<<"\n";
-    std::cout<<"\nCount: "<<b.checkCount()<<"\n";
-
-    b.showPages();
-    std::cout<<"\nCurrent after back 4: "<<b.back(4)<<"\n";
-    std::cout<<"\nCount: "<<b.checkCount()<<"\n";
-
-    b.visit("random.com");
+    BrowserHistory b = BrowserHistory("leetcode.com");
+    b.visit("google.com");
+    b.visit("facebook.com");
+    b.visit("youtube.com");
     std::cout<<"\n";
     b.showPages();
-    std::cout<<"\nCount: "<<b.checkCount()<<"\n";
+
+    std::cout<<"\nBack 1: "<<b.back(1)<<"\n";
+    std::cout<<"Back 1: "<<b.back(1)<<"\n";
+    std::cout<<"Forward 1: "<<b.forward(1)<<"\n";
+    b.showPages();
+    std::cout<<"\n";
+
+    b.visit("linkedin.com");
+    b.showPages();
+
+    std::cout<<"\nForward 2: "<<b.forward(2)<<"\n";
+    std::cout<<"Back 2: "<<b.back(2)<<"\n";
+    std::cout<<"\n";
+
+    b.showPages();
+    std::cout<<"\nBack 7: "<<b.back(7)<<"\n";
     
     return 0;
 }
