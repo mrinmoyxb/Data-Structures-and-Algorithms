@@ -49,6 +49,7 @@ void removalCommonElements(Node* &head, std::vector<int> arr){
     Node* prev = head;
     
     for(const auto& key: result){
+        std::cout<<"\nCurrent key: "<<key<<"\n";
         if(head->data==key){
             Node* delNode = head;
             head = head->next;
@@ -56,12 +57,39 @@ void removalCommonElements(Node* &head, std::vector<int> arr){
         }else{
             current = current->next;
         }
-
         while(current!=NULL){
             if(current->data==key){
                 Node* delNode = current;
                 current = current->next;
                 prev->next = current;
+                delete delNode;
+            }else{
+                prev = current;
+                current = current->next;
+            }
+        }
+    }
+}
+
+//? Remove elements present in an array
+void removeElements(Node* &head, std::vector<int> arr){
+    
+    for(const auto& key: arr){
+        std::cout<<"\nCurrent key: "<<key<<"\n";
+        Node* current = head;
+        Node* prev = head;
+        if(head->data==key){
+            Node* delNode = head;
+            head = head->next;
+            delete delNode;
+        }else{
+            current = current->next;
+        }
+        while(current!=NULL){
+            if(current->data==key){
+                Node* delNode = current;
+                prev->next = current->next;
+                current = current->next;
                 delete delNode;
             }else{
                 prev = current;
@@ -109,6 +137,21 @@ void display(Node* head){
     }
 }
 
+// void displayUsingForLoop(Node* head, std::vector<int> arr){
+   
+//     for(const auto& key: arr){
+//         for(Node* current = head; current!=NULL; current = current->next){
+//             if(head->data == key){
+//                 Node* delNode = head;
+//                 head = head->next;
+//                 delete delNode;
+//             }else{
+
+//             }
+//         }
+//     }
+// }
+
 int main(){
     Node* node = new Node(1);
     Node* head = node;
@@ -116,20 +159,23 @@ int main(){
     insertAtTail(head, 3);
     insertAtTail(head, 9);
     insertAtTail(head, 5);
-    insertAtTail(head, 2);
     display(head);
     
-    std::vector<int> arr = {100, 200, 3, 4, 500, 600};
-    std::cout<<"\nArray: "<<"\n";
-    for(const auto& item: arr){
-        std::cout<<item<<" ";
-    }
-    std::vector<int> result = commonElementsInListAndArray(head, arr);
-    std::cout<<"\nCommon elements: "<<"\n";
-    for(const auto& value: result){
-        std::cout<<value<<" ";
-    }
-    removalCommonElements(head, arr);
+    //displayUsingForLoop(head);
+    // std::vector<int> arr = {100, 200, 3, 4, 500, 600};
+    // std::cout<<"\nArray: "<<"\n";
+    // for(const auto& item: arr){
+    //     std::cout<<item<<" ";
+    // }
+    // std::vector<int> result = commonElementsInListAndArray(head, arr);
+    // std::cout<<"\nCommon elements: "<<"\n";
+    // for(const auto& value: result){
+    //     std::cout<<value<<" ";
+    // }
+    // removalCommonElements(head, arr);
+
+    std::vector<int> vec = {3, 9};
+    removeElements(head, vec);
     display(head);
 
     return 0;
