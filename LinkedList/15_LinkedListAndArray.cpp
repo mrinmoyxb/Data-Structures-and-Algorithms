@@ -45,11 +45,10 @@ std::vector<int> commonElementsInListAndArray(Node*& head, std::vector<int> arr)
 //! Removal of common elements
 void removalCommonElements(Node* &head, std::vector<int> arr){
     std::vector<int> result = commonElementsInListAndArray(head, arr);
-    Node* current = head;
-    Node* prev = head;
-    
-    for(const auto& key: result){
-        std::cout<<"\nCurrent key: "<<key<<"\n";
+
+    for(const auto& key: arr){
+        Node* current = head;
+        Node* prev = head;
         if(head->data==key){
             Node* delNode = head;
             head = head->next;
@@ -60,8 +59,8 @@ void removalCommonElements(Node* &head, std::vector<int> arr){
         while(current!=NULL){
             if(current->data==key){
                 Node* delNode = current;
+                prev->next = current->next;
                 current = current->next;
-                prev->next = current;
                 delete delNode;
             }else{
                 prev = current;
@@ -128,6 +127,7 @@ void deleteELement(Node* &head, int key){
     }
 }
 
+//? display linked list
 void display(Node* head){
     Node* current = head;
     std::cout<<"\nLinked List: "<<"\n";
@@ -137,45 +137,36 @@ void display(Node* head){
     }
 }
 
-// void displayUsingForLoop(Node* head, std::vector<int> arr){
-   
-//     for(const auto& key: arr){
-//         for(Node* current = head; current!=NULL; current = current->next){
-//             if(head->data == key){
-//                 Node* delNode = head;
-//                 head = head->next;
-//                 delete delNode;
-//             }else{
-
-//             }
-//         }
-//     }
-// }
+//! Traverse linked lsit using for loop
+void displayUsingForLoop(Node* head){
+    std::cout<<"Traversal of linked list using for loop: "<<"\n";
+    for(Node* current = head; current!=NULL; current = current->next){
+        std::cout<<current->data<<" ";
+    }
+}
 
 int main(){
     Node* node = new Node(1);
     Node* head = node;
     insertAtTail(head, 2);
     insertAtTail(head, 3);
-    insertAtTail(head, 9);
+    insertAtTail(head, 4);
     insertAtTail(head, 5);
-    display(head);
     
-    //displayUsingForLoop(head);
-    // std::vector<int> arr = {100, 200, 3, 4, 500, 600};
-    // std::cout<<"\nArray: "<<"\n";
-    // for(const auto& item: arr){
-    //     std::cout<<item<<" ";
-    // }
-    // std::vector<int> result = commonElementsInListAndArray(head, arr);
-    // std::cout<<"\nCommon elements: "<<"\n";
-    // for(const auto& value: result){
-    //     std::cout<<value<<" ";
-    // }
-    // removalCommonElements(head, arr);
+    displayUsingForLoop(head);
+    std::vector<int> arr = {100, 1, 3, 5, 500, 600};
+    std::cout<<"\nArray: "<<"\n";
+    for(const auto& item: arr){
+        std::cout<<item<<" ";
+    }
+    
+    std::vector<int> result = commonElementsInListAndArray(head, arr);
+    std::cout<<"\nCommon elements: "<<"\n";
+    for(const auto& value: result){
+        std::cout<<value<<" ";
+    }
 
-    std::vector<int> vec = {3, 9};
-    removeElements(head, vec);
+    removalCommonElements(head, arr);
     display(head);
 
     return 0;
