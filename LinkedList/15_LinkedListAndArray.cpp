@@ -21,7 +21,8 @@ void insertAtTail(Node*& head, int data){
     current->next = newNode;
 }
 
-void checkWithArray(Node*& head){
+//! Common elements in array and linked list using hashmap
+std::vector<int> commonElementsInListAndArray(Node*& head){
     std::vector<int> arr = {100, 200, 3, 4, 500, 600};
     std::map<int, int> hashTable;
 
@@ -41,10 +42,57 @@ void checkWithArray(Node*& head){
         std::cout<<value.first<<"   "<<value.second<<"\n";
     }
 
+    std::vector<int> common;
+
     std::cout<<"\nCommon elements: "<<"\n";
     for(int i=0; i<arr.size()-1; i++){
         if(hashTable[arr[i]]!=0){
+            common.push_back(arr[i]);
             std::cout<<arr[i]<<" ";
+        }
+    }
+
+    return common;
+}
+
+//! Removal of common elements
+void removalCommonElements(Node* &head, int data){
+    std::vector<int> result = commonElementsInListAndArray(head);
+    Node* current = head;
+    Node* prev = head;
+    
+    // while(current!=NULL){
+    //     for(auto& value: result){
+
+    //     }
+    // }
+}
+
+//! Deleting any element in linked list
+void deleteELement(Node* &head, int key){
+    if(head==NULL){
+        return;
+    }
+
+    Node* current = head;
+    Node* prev = head;
+    if(head->data==key){
+        Node* delNode = head;
+        head = head->next;
+        prev = head;
+        delete delNode;
+        return;
+    }
+
+    while(current!=NULL){
+        if(current->data==key){
+            Node* delNode = current;
+            current = current->next;
+            prev->next = current;
+            delete delNode;
+        }else{
+            prev = current;
+            current = current->next;
         }
     }
 }
@@ -67,6 +115,11 @@ int main(){
     insertAtTail(head, 5);
     insertAtTail(head, 2);
     display(head);
-    checkWithArray(head);
+    
+    deleteELement(head, 2);
+    display(head);
+    // deleteELement(head, 4);
+    // deleteELement(head, 4);
+
     return 0;
 }
