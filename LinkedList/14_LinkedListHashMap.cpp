@@ -23,6 +23,19 @@ void insertAtTail(Node* &tail, int data){
     }
 }
 
+void insert(Node*& head, Node*& tail, int data){
+    Node* newNode = new Node(data);
+    if(head==NULL && tail==NULL){
+        head = newNode;
+        tail = head;
+        tail->next = head;
+    }else{
+        newNode->next = tail->next;
+        tail->next = newNode;
+        tail = newNode;
+    }
+}
+
 void display(Node* tail){
     Node* current = tail;
     Node* head = current->next;
@@ -51,19 +64,36 @@ void hashMap(Node* tail){
     }
 }
 
+void isListCircular(Node* head){
+    Node* current = head;
+    std::map<Node*, int> hashTable;
+
+    do{
+        hashTable[head]+=1;
+        std::cout<<head->data<<" ";
+        head = head->next;
+    }while(hashTable[head]!=1);
+    std::cout<<"\n";
+
+    for(const auto& value: hashTable){
+        std::cout<<value.first<<"   "<<value.second<<"\n";
+    }
+}
+
 int main(){
     Node* node = NULL;
+    Node* head = node;
     Node* tail = node;
-    insertAtTail(tail, 100);
-    insertAtTail(tail, 200);
-    insertAtTail(tail, 300);
-    insertAtTail(tail, 400);
+    insert(head, tail, 100);
+    insert(head, tail, 200);
+    insert(head, tail, 300);
+    insert(head, tail, 400);
 
     std::cout<<"\nLinked List: "<<"\n";
     display(tail);
 
     std::cout<<"\nHashmap: "<<"\n";
-    hashMap(tail);
+    isListCircular(head);
 
     return 0;
 }
