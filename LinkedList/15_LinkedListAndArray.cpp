@@ -34,7 +34,7 @@ std::vector<int> commonElementsInListAndArray(Node*& head, std::vector<int> arr)
 
     std::vector<int> common;
     for(int i=0; i<arr.size()-1; i++){
-        if(hashTable[arr[i]]!=0){
+        if(hashTable[arr[i]]>=1){
             common.push_back(arr[i]);
         }
     }
@@ -44,9 +44,10 @@ std::vector<int> commonElementsInListAndArray(Node*& head, std::vector<int> arr)
 
 //! Removal of common elements
 void removalCommonElements(Node* &head, std::vector<int> arr){
-    std::vector<int> result = commonElementsInListAndArray(head, arr);
+    //std::vector<int> result = commonElementsInListAndArray(head, arr);
 
-    for(const auto& key: arr){
+    std::vector<int> result = {1};
+    for(const auto& key: result){
         Node* current = head;
         Node* prev = head;
         if(head->data==key){
@@ -149,25 +150,30 @@ int main(){
     Node* node = new Node(1);
     Node* head = node;
     insertAtTail(head, 2);
-    insertAtTail(head, 3);
-    insertAtTail(head, 4);
-    insertAtTail(head, 5);
-    
-    displayUsingForLoop(head);
-    std::vector<int> arr = {100, 1, 3, 5, 500, 600};
+    insertAtTail(head, 1);
+    // insertAtTail(head, 4);
+    // insertAtTail(head, 5);
+    display(head);
+
+    std::vector<int> arr = {1, 2, 3};
     std::cout<<"\nArray: "<<"\n";
     for(const auto& item: arr){
         std::cout<<item<<" ";
     }
     
-    std::vector<int> result = commonElementsInListAndArray(head, arr);
-    std::cout<<"\nCommon elements: "<<"\n";
-    for(const auto& value: result){
-        std::cout<<value<<" ";
-    }
+    std::vector<int> temp = {1, 2, 3};
+    // std::vector<int> result = commonElementsInListAndArray(head, arr);
+   
+    // std::cout<<"\nCommon elements: "<<"\n";
+    // for(const auto& value: result){
+    //     std::cout<<value<<" ";
+    // }
 
-    removalCommonElements(head, arr);
+    removalCommonElements(head, temp);
     display(head);
 
     return 0;
 }
+//! Bugs
+//! Last common element
+//! Common elemnts found
