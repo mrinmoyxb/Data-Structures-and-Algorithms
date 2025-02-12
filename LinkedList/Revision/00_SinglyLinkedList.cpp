@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 class Node{
     public:
@@ -11,10 +12,12 @@ class Node{
 };
 
 class SinglyLinkedList{
+
     public:
     Node* linkedList = nullptr;
     Node* head = nullptr;
     Node* tail = nullptr;
+    Node* temp = head;
 
     SinglyLinkedList(int data){
         Node* newNode = new Node(data);
@@ -61,6 +64,75 @@ class SinglyLinkedList{
         return prev;
     }
 
+    int lengthOfLinkedList(){
+        int count = 0;
+        Node* current = head;
+        while(current!=NULL){
+            count+=1;
+            current = current->next;
+        }
+        return count;
+    }
+
+    std::vector<int> evenNumbers(){
+        Node* current = head;
+        std::vector<int> evenNumbersList;
+        while(current!=NULL){
+            if(current->data%2==0){
+                evenNumbersList.push_back(current->data);
+                current = current->next;
+            }
+            current = current->next;
+        }
+        return evenNumbersList;
+    }
+
+    Node* deleteNodeByValue(int data){
+        Node* prev = NULL;
+        Node* current = head;
+
+        while(current!=NULL){
+            if(head->data == data){
+                Node* delNode = head;
+                head = head->next;
+                delete delNode;
+                current = head;
+                prev = current;
+                current = current->next;
+            }
+        
+            if(current->data == data){
+                Node* delNode = current;
+                prev->next = current->next;
+                delete delNode;
+            }else{
+                prev = current;
+                current = current->next;
+            }
+        }
+        return head;
+    }
+
+    Node* deleteNodeByPosition(int position){
+        Node* current = head;
+        int count = 1;
+        if(position==1){
+            Node* delNode = head;
+            head = head->next;
+            delete delNode;
+        }
+        else{
+            while(count<position-1){
+                current = current->next;
+                count+=1;
+            }
+            Node* delNode = current->next;
+            current->next = current->next->next;
+            delete delNode;
+        }
+        return head;
+    }
+
     void display(){
         std::cout<<"\nLinked List: "<<"\n";
         Node* current = head;
@@ -78,22 +150,37 @@ class SinglyLinkedList{
             current = current->next;
         }
     }
+
 };
 
 int main(){
     SinglyLinkedList s = SinglyLinkedList(100);
     s.insertAtHead(200);
     s.insertAtTail(300);
-    s.insertAtTail(400);
+    s.insertAtTail(200);
     s.insertAtTail(500);
     s.display();
 
     s.insertAtMid(1000, 2);
     s.display();
 
-    Node* rev = s.reverseLinkedList();
-    s.displayWithNode(rev);
+    // Node* rev = s.reverseLinkedList();
+    // s.displayWithNode(rev);
 
-    s.display();
+    // s.display();
+
+    // std::cout<<"\nLength of linked list: "<<s.lengthOfLinkedList()<<"\n";
+    // std::vector<int> evenNums = s.evenNumbers();
+
+    // std::cout<<"Even numbers: "<<"\n";
+    // for(const auto& num: evenNums){
+    //     std::cout<<num<<" ";
+    // }
+
+    Node* result = s.deleteNodeByPosition(3);
+    s.displayWithNode(result);
+
+
     return 0;
+
 }
