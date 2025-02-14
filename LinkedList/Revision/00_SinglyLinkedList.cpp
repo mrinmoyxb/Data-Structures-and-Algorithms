@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <stack>
 
 class Node{
     public:
@@ -133,6 +134,32 @@ class SinglyLinkedList{
         return head;
     }
 
+    Node* revUsingStack(){
+        std::stack<int> stack;
+        Node* current = head;
+        while(current!=NULL){
+            stack.push(current->data);
+            current = current->next;
+        }
+
+        std::cout<<"\nResult: "<<"\n";
+        Node* result = nullptr;
+        Node* ptr = nullptr;
+        while(!stack.empty()){
+            Node* newNode = new Node(stack.top());
+            if(result==NULL){
+                result = newNode;
+                ptr = result;
+                stack.pop();
+            }else{
+                ptr->next = newNode;
+                ptr = newNode;
+                stack.pop();
+            }
+        }
+        return result;
+    }
+
     void display(){
         std::cout<<"\nLinked List: "<<"\n";
         Node* current = head;
@@ -159,8 +186,6 @@ int main(){
     s.insertAtTail(300);
     s.insertAtTail(200);
     s.insertAtTail(500);
-    s.display();
-
     s.insertAtMid(1000, 2);
     s.display();
 
@@ -177,9 +202,8 @@ int main(){
     //     std::cout<<num<<" ";
     // }
 
-    Node* result = s.deleteNodeByPosition(3);
+    Node* result = s.revUsingStack();
     s.displayWithNode(result);
-
 
     return 0;
 
