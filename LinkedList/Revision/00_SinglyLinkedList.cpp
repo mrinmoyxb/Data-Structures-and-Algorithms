@@ -160,6 +160,22 @@ class SinglyLinkedList{
         return result;
     }
 
+    bool linearSearch(int key){
+        Node* current = head;
+        while(current!=NULL){
+            if(current->data==key){
+                return true;
+            }else{
+                current = current->next;
+            }
+        }
+        return false;
+    }
+
+    Node* getHead(){
+        return head;
+    }
+
     void display(){
         std::cout<<"\nLinked List: "<<"\n";
         Node* current = head;
@@ -179,6 +195,51 @@ class SinglyLinkedList{
     }
 
 };
+
+bool linearSearchUsingRecursion(Node* head, int key){
+    if(head==NULL){
+        return false;
+    }
+
+    if(head->data==key){
+        return true;
+    }
+    else{
+        return linearSearchUsingRecursion(head->next, key);
+    }
+}
+
+Node* midNode(Node* head){
+    Node* slow = head;
+    Node* fast = head;
+    while(fast!=NULL && fast->next!=NULL){
+        fast = fast->next->next;
+        slow = slow->next;
+    }
+    return slow;
+}
+
+bool binarySearch(Node* head, int key){
+    if(head==NULL){
+        return false;
+    }
+
+    Node* mid = midNode(head);
+    if(mid->data == key){
+        return true;
+    }
+    if(key>mid->data){
+        return binarySearch(mid->next, key);
+    }else{
+        Node* start = head;
+        Node* temp = head;
+        while(temp->next!=mid){
+            temp = temp->next;
+        }
+        temp->next = NULL;
+        return binarySearch(start, key);
+    }
+}
 
 int main(){
     SinglyLinkedList s = SinglyLinkedList(100);
@@ -202,9 +263,13 @@ int main(){
     //     std::cout<<num<<" ";
     // }
 
-    Node* result = s.revUsingStack();
-    s.displayWithNode(result);
+    // Node* result = s.revUsingStack();
+    // s.displayWithNode(result);
 
+    // bool result = linearSearchUsingRecursion(s.getHead(), 300);
+    // std::cout<<"\nResult: "<<result<<"\n";
+
+    
     return 0;
 
 }
