@@ -73,6 +73,32 @@ class SinglyLinkedList{
 
 };
 
+void insertAtHead(Node*& head, int data){
+    Node* newNode = new Node(data);
+    newNode->next = head;
+    head = newNode;
+}
+
+void insertAtTail(Node*& head, int data){
+    Node* newNode = new Node(data);
+    Node* current = head;
+    while(current!=NULL){
+        current = current->next;
+    }
+    current->next = newNode;
+}
+
+void insertAtMid(Node*& head, int data, int position){
+    Node* newNode = new Node(data);
+    Node* current = head;
+    int count = 1;
+    while(count<position-1){
+        current = current->next;
+    }
+    newNode->next = current->next;
+    current->next = newNode;
+}
+
 int main(){
     SinglyLinkedList s = SinglyLinkedList(100);
     s.insertAtHead(200);
