@@ -48,10 +48,27 @@ void vec2(){
 
     std::cout<<"\nRemove the last element: "<<std::endl;
     vec.pop_back();
+    for(const int& i: vec){
+        std::cout<<i<<" ";
+    }
 }
 
+//! Common vector operations
+void vec3(){
+    std::vector<int> vec = {10, 20, 30, 40, 50};
+    std::cout<<"Vector is: "<<std::endl;
+    for(const int& i: vec){
+        std::cout<<i<<" ";
+    }
+
+    std::cout<<"First element: "<<vec.front()<<std::endl;
+    std::cout<<"Last element: "<<vec.back()<<std::endl;
+    std::cout<<"Size of vector: "<<vec.capacity()<<std::endl;
+    std::cout<<"Number of elements: "<<vec.size()<<std::endl;
+}
 
 int main(){
     vec2();
+    vec3();
     return 0;
 }
