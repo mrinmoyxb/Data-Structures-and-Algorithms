@@ -105,7 +105,9 @@
         "execution": "cpp",
         "ios": "cpp",
         "locale": "cpp",
-        "__tree": "cpp"
+        "__tree": "cpp",
+        "print": "cpp",
+        "queue": "cpp"
     },
     "C_Cpp.errorSquiggles": "enabled",
     "editor.fontSize": 20

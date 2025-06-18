@@ -67,7 +67,9 @@ void vec3(){
     std::cout<<"Number of elements: "<<vec.size()<<std::endl;
 }
 
-int main(){
+//! Optimised solution of finding duplicate elements
+
+ int main(){
     vec2();
     vec3();
     return 0;
