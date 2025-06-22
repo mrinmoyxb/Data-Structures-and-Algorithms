@@ -91,9 +91,97 @@ void pointer5(){
     std::cout<<"ptr1: "<<ptr1<<std::endl;
     std::cout<<"&ptr1: "<<&ptr1<<std::endl;
     std::cout<<"ptr2: "<<ptr2<<std::endl;
+    std::cout<<std::endl;
+
+    std::cout<<"*(&num): "<<*(&num)<<std::endl;
+}
+
+//! pointer: with respect to array
+void pointer6(){
+    int arr[3] = {10, 20, 30};
+
+    std::cout<<"arr: "<<arr<<std::endl;
+    std::cout<<"&arr[0]: "<<&arr[0]<<std::endl;
+    std::cout<<"arr+1: "<<arr+1<<std::endl;
+    std::cout<<"&arr[1]: "<<&arr[1]<<std::endl;
+    std::cout<<"arr+2: "<<(arr+2)<<std::endl;
+    std::cout<<"&arr[2]: "<<&arr[2]<<std::endl;
+}
+
+//! array
+void pointer7(){
+    int arr[5] = {1, 2, 3, 4, 5};
+    std::cout<<"arr: "<<arr<<std::endl;
+    std::cout<<"&arr[0]: "<<&arr[0]<<std::endl;
+    std::cout<<"*arr: "<<*arr<<std::endl;
+    std::cout<<"arr[0]: "<<arr[0]<<std::endl;
+    std::cout<<"*arr+1: "<<*arr+1<<std::endl;
+    std::cout<<std::endl;
+    std::cout<<"size of arr: "<<sizeof(arr)<<std::endl;
+    std::cout<<"size of arr[0]: "<<sizeof(arr[0])<<std::endl;
+    int* ptr = &arr[1];
+    std::cout<<"arr[1]: "<<arr[1]<<std::endl;
+    *ptr = 1000;
+    std::cout<<"arr[1]: "<<arr[1]<<std::endl;
+    
+    std::cout<<"Printing the array: "<<std::endl;
+    for(int i=0; i<5; i++){
+        std::cout<<*(arr+i)<<" ";
+    }
+}
+
+//! array
+void pointer8(){
+    int arr[5] = {1, 2, 3, 4, 5};
+    int* ptr = arr;
+    std::cout<<"arr: "<<arr<<std::endl;
+    std::cout<<"ptr: "<<ptr<<std::endl;
+    std::cout<<"*ptr: "<<*ptr<<std::endl;
+    std::cout<<"arr[0]: "<<arr[0]<<std::endl;
+
+    std::cout<<std::endl;
+    std::cout<<"arr+1: "<<arr+1<<std::endl;
+    std::cout<<"ptr+1: "<<ptr+1<<std::endl;
+    std::cout<<"*(ptr+1): "<<*(ptr+1)<<std::endl;
+    std::cout<<"arr[1]: "<<arr[1]<<std::endl;
+
+    arr[2] = 3000;
+    for(int i=0; i<5; i++){
+        std::cout<<arr[i]<<" ";
+    }
+
+    std::cout<<std::endl;
+    *(ptr+3) = 9000;
+    for(int i=0; i<5; i++){
+        std::cout<<arr[i]<<" ";
+    }
+}
+
+//! array in function
+void checkArray(int *arr, int size){
+    std::cout<<"INSIDE FUNCTION: "<<std::endl;
+    for(int i=0; i<size; i++){
+        std::cout<<*(arr+i)<<" ";
+        if(i%2==0){
+            *(arr+i) = 99999;
+        }else{
+            continue;
+        }
+    }
+    
 }
 
 int main(){
-    pointer5();
+    // pointer8();
+    int arr[5] = {10, 20, 30, 40, 50};
+    std::cout<<"\nARRAY Before Function: "<<std::endl;
+    for(int i=0; i<5; i++){
+        std::cout<<arr[i]<<" ";
+    }
+    checkArray(arr, 5);
+    std::cout<<"\nARRAY After Function: "<<std::endl;
+    for(int i=0; i<5; i++){
+        std::cout<<arr[i]<<" ";
+    }
     return 0;
 }
