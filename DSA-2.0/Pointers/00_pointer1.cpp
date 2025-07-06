@@ -168,20 +168,30 @@ void checkArray(int *arr, int size){
             continue;
         }
     }
-    
+}
+
+//! Character array:
+void pointer9(){
+    char c[6] = "abcde";
+    std::cout<<"c: "<<c<<std::endl;
+    // char* ptr = &c[0];
+    // std::cout<<"&c[0]: "<<&c[0]<<std::endl;
+    // std::cout<<"ptr: "<<ptr<<std::endl;
+    std::cout<<&c[0]<<std::endl;
 }
 
 int main(){
     // pointer8();
-    int arr[5] = {10, 20, 30, 40, 50};
-    std::cout<<"\nARRAY Before Function: "<<std::endl;
-    for(int i=0; i<5; i++){
-        std::cout<<arr[i]<<" ";
-    }
-    checkArray(arr, 5);
-    std::cout<<"\nARRAY After Function: "<<std::endl;
-    for(int i=0; i<5; i++){
-        std::cout<<arr[i]<<" ";
-    }
+    // int arr[5] = {10, 20, 30, 40, 50};
+    // std::cout<<"\nARRAY Before Function: "<<std::endl;
+    // for(int i=0; i<5; i++){
+    //     std::cout<<arr[i]<<" ";
+    // }
+    // checkArray(arr, 5);
+    // std::cout<<"\nARRAY After Function: "<<std::endl;
+    // for(int i=0; i<5; i++){
+    //     std::cout<<arr[i]<<" ";
+    // }
+    pointer9();
     return 0;
 }
