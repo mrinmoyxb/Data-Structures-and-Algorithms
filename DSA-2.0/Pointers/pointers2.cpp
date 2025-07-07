@@ -4,23 +4,24 @@
 void pointer1(){
     int arr[5] = {1, 2, 3, 4, 5};
 
-    //* arr[i]
+    //* arr[i] -> Access method 1
     std::cout<<"Array: "<<std::endl;
     for(int i=0; i<5; i++){
         std::cout<<arr[i]<<" ";
     }
 
-    //* *(arr+i)
+    //* *(arr+i) -> Access method 2
     std::cout<<"\nArray using pointers: "<<std::endl;
     for(int i=0; i<5; i++){
         std::cout<<*(arr+i)<<" ";
     }
 
-    //* i[arr]
+    //* i[arr] -> Access method 3
     std::cout<<"\nArray: "<<std::endl;
     for(int i=0; i<5; i++){
         std::cout<<i[arr]<<" ";
     }
+
 }
 
 //! *(arr+i) -> Values
