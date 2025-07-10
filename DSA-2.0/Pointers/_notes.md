@@ -4,9 +4,9 @@
 Goal: Build a strong grip on language features that directly affect memory and performance.
 
 🔹 Topics
-- Pointers and References
+- Pointers and References 
 - Stack vs Heap
-- Dynamic Memory (new, delete)
+- Dynamic Memory (new, delete) 
 - RAII (Resource Acquisition Is Initialization)
 - const, inline, constexpr, static
 - Scope and Lifetime
