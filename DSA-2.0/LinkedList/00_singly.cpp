@@ -36,6 +36,54 @@ void insertAtMid(Node* &head, int data, int position){
     current->next = newNode;
 }
 
+void printEvenNumbers(Node* head){
+    std::cout<<"\nEven Numbers: "<<std::endl;
+    Node* current = head;
+    while(current!=NULL){
+        if(current->data%2==0){
+            std::cout<<current->data<<" ";
+            current = current->next;
+        }else{
+            current = current->next;
+        }
+    }
+}
+
+void printOddNumbers(Node* head){
+    std::cout<<"\nOdd Numbers: "<<std::endl;
+    Node* current = head;
+    while(current!=NULL){
+        if(current->data%2!=0){
+            std::cout<<current->data<<" ";
+            current = current->next;
+        }else{
+            current = current->next;
+        }
+    }
+}
+
+int lengthOfLinkedList(Node* head){
+    Node* current = head;
+    int count = 0;
+    while(current!=NULL){
+        count+=1;
+        current = current->next;
+    }
+    return count;
+}
+
+void findMidElement(Node* head){
+    Node* current = head;
+    int length = lengthOfLinkedList(head);
+    int mid = (length/2)+1;
+    int count = 1;
+    while(count<mid){
+        current = current->next;
+        count+=1;
+    }
+    std::cout<<"Mid element: "<<current->data<<std::endl;
+}
+
 void display(Node* head){
     std::cout<<"Linked List: "<<std::endl;
     Node* current = head;
@@ -49,10 +97,15 @@ int main(){
     Node* node1 = new Node(100);
     Node* head = node1;
     insertAtHead(head, 120);
-    insertAtHead(head, 130);
+    insertAtHead(head, 223);
     insertAtHead(head, 140);
-    insertAtTail(head, 500);
+    insertAtTail(head, 569);
     insertAtMid(head, 120000, 2);
+    insertAtHead(head, 290);
     display(head);
+    // printEvenNumbers(head);
+    // printOddNumbers(head);
+    std::cout<<"\nLength of linked list: "<<lengthOfLinkedList(head)<<std::endl;
+    findMidElement(head);
     return 0;
 }
