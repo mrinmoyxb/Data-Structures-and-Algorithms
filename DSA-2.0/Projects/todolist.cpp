@@ -123,7 +123,7 @@ int main(){
     l.addTask("Gym", "Chest day");
     l.addTask("Shopping", "Need to buy something for her");
     l.addTask("Report", "Need to sumbit the report to HR by 10pm");
-     l.addTask("Date", "Date with my muffin");
+    l.addTask("Date", "Date with my muffin");
     l.addTask("Gaming Session", "Gamming Session");
     l.addTask("Meeting", "Imp. meeting tomorrow, so prepare ppt.");
     l.showTasks();
