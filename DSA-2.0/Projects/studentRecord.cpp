@@ -88,6 +88,32 @@ class StudentRecord{
         std::cout<<"Not available"<<std::endl;
     }
 
+    void deleteStudent(int id){
+        if(head!=NULL && head->id==id){
+            Student* delNode = head;
+            head = head->next;
+            if(head!=NULL){
+                head->prev = NULL;
+            }else{
+                tail = NULL;
+            }
+        }else{
+            Student *currentStudent = head;
+            while(currentStudent!=NULL){
+                if(currentStudent->next->id==id){
+                    Student* delNode = currentStudent->next;
+                    currentStudent->next = delNode->next;
+                    delNode->prev = NULL;
+                    delete delNode;
+                    totalNoOfStudents-=1;
+                    break;
+                }else{
+                    currentStudent = currentStudent->next;
+                }
+            }
+        }
+    }
+
     ~StudentRecord(){
         Student* currentStudent = head;
         while(currentStudent!=NULL){
@@ -101,12 +127,15 @@ class StudentRecord{
 int main(){
     StudentRecord s = StudentRecord();
     s.insertStudentRecord("Alex", "Borah", 20, 200, {92.2f, 80.5f, 95.0f, 99.5f, 85.5f});
-    s.insertStudentRecord("Aman", "Kim", 20, 200, {50.2f, 80.0f, 95.0f, 85.5f, 100.0f});
-    s.insertStudentRecord("Bob", "Boruah", 20, 200, {64.2f, 40.5f, 55.0f, 96.5f, 85.5f});
+    s.insertStudentRecord("Bob", "Kim", 20, 200, {50.2f, 80.0f, 95.0f, 85.5f, 100.0f});
+    s.insertStudentRecord("Aman", "Boruah", 20, 200, {64.2f, 40.5f, 55.0f, 96.5f, 85.5f});
     s.insertStudentRecord("Cam", "Kim", 20, 200, {70.2f, 60.0f, 95.0f, 75.5f, 60.0f});
     s.insertStudentRecord("John", "Borah", 20, 200, {70.2f, 80.5f, 95.0f, 99.5f, 85.5f});
+    s.insertStudentRecord("Miriam", "Maisel", 20, 200, {64.2f, 40.5f, 55.0f, 96.5f, 85.5f});
     s.insertStudentRecord("Zen", "Kim", 20, 200, {50.2f, 80.0f, 65.0f, 85.5f, 100.0f});
     s.showAllStudents();
     s.searchById(4);
+    s.deleteStudent(5);
+    s.showAllStudents();
     return 0;
 }
