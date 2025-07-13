@@ -85,12 +85,25 @@ void findMidElement(Node* head){
 }
 
 void display(Node* head){
-    std::cout<<"Linked List: "<<std::endl;
+    std::cout<<"\nLinked List: "<<std::endl;
     Node* current = head;
     while(current!=NULL){
         std::cout<<current->data<<" ";
         current = current->next;
     }
+}
+
+void reverseLinkedList(Node* &head){
+    Node* prev = NULL;
+    Node* current = head;
+    Node* forward = head;
+    while(forward!=NULL){
+        forward = current->next;
+        current->next = prev;
+        prev = current;
+        current = forward;
+    }
+    display(prev);
 }
 
 int main(){
@@ -105,7 +118,8 @@ int main(){
     display(head);
     // printEvenNumbers(head);
     // printOddNumbers(head);
-    std::cout<<"\nLength of linked list: "<<lengthOfLinkedList(head)<<std::endl;
-    findMidElement(head);
+    // std::cout<<"\nLength of linked list: "<<lengthOfLinkedList(head)<<std::endl;
+    // findMidElement(head);
+    reverseLinkedList(head);
     return 0;
 }
