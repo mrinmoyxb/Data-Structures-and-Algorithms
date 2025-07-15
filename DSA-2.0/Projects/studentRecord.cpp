@@ -97,6 +97,9 @@ class StudentRecord{
             }else{
                 tail = NULL;
             }
+            delete delNode;
+            totalNoOfStudents-=1;
+            return;
         }else{
             Student *currentStudent = head;
             while(currentStudent!=NULL){
