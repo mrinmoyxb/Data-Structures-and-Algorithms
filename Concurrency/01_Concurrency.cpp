@@ -1,23 +1,27 @@
 #include <iostream>
 #include <thread>
 #include <vector>
+#include <mutex>
+
+std::mutex gLock;
+static int shared_value = 0;
+
+void shared_value_increment(){
+    gLock.lock();
+    shared_value+=1;
+    gLock.unlock();
+}
 
 int main(){
-
-    auto lambda = [](int x){
-        std::cout<<"Thread id: "<<std::this_thread::get_id()<<std::endl;
-        std::cout<<"Accessing element: "<<x<<std::endl;
-    };
-
-    std::vector<std::jthread> jthreads;
+    std::vector<std::thread> threads;
     for(int i=0; i<10; i++){
-        jthreads.push_back(std::jthread(lambda, i+1));
+        threads.push_back(std::thread(shared_value_increment));
     }
 
     for(int i=0; i<10; i++){
-        jthreads[i].join();
+        threads[i].join();
     }
 
-
+    std::cout<<"shared value: "<<shared_value<<std::endl;
     return 0;
 }
