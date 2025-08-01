@@ -38,6 +38,7 @@ void display(Node* head){
     }
 }
 
+//! Merge two sorted linked list
 Node* mergeTwoSortedLinkedList(Node* list1, Node* list2){
     Node* current1 = list1;
     Node* current2 = list2;
@@ -93,23 +94,58 @@ Node* mergeTwoSortedLinkedList(Node* list1, Node* list2){
     return head;
 }
 
+Node* removeNthNode(Node*& head, int n){
+    if(head==NULL){
+        return NULL;
+    }
+
+    Node* current = head;
+    int length = lengthOfLinkedList(head);
+    int position = length - n;
+    int count = 0;
+
+    if(length==1 && n==1){
+        return NULL;
+    }
+
+    if(length==n){
+        Node* temp = current;
+        current = current->next;
+        temp->next = NULL;
+        delete temp;
+        return current;
+    }else{
+        while(count<=position-1){
+            count+=1;
+            current = current->next;
+        }   
+        Node* temp = current->next;
+        current->next = current->next->next;
+        delete temp;
+        return head;
+    }
+}
+
 int main(){
-    Node* l1 = new Node(100);
-    Node* l2 = new Node(120);
+    Node* l1 = new Node(12);
+    // Node* l2 = new Node(120);
     Node* head1 = l1;
-    Node* head2 = l2;
-    insertAtTail(head1, 100);
-    insertAtTail(head1, 200);
-    insertAtTail(head1, 300);
-    insertAtTail(head1, 120);
-    insertAtTail(head2, 190);
-    insertAtTail(head2, 320);
-    insertAtTail(head2, 500);
+    // Node* head2 = l2;
+    insertAtTail(head1, 22);
+    // insertAtTail(head1, 13);
+    // insertAtTail(head1, 49);
+    // insertAtTail(head1, 60);
+    // insertAtTail(head1, 120);
+    // insertAtTail(head2, 190);
+    // insertAtTail(head2, 320);
+    // insertAtTail(head2, 500);
     display(head1);
-    display(head2);
+    // display(head2);
 
-    Node* sortedLinkedList = mergeTwoSortedLinkedList(head1, head2);
-    display(sortedLinkedList);
-
+    // Node* sortedLinkedList = mergeTwoSortedLinkedList(head1, head2);
+    // display(sortedLinkedList);
+    
+    Node* updateList = removeNthNode(head1, 1);
+    display(updateList);
     return 0;
 }
