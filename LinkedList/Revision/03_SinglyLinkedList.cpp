@@ -94,7 +94,7 @@ class SinglyLinkedList{
 
 
     void display(){
-        std::cout<<"Length of linked list: "<<std::endl;
+        std::cout<<"Linked list: "<<std::endl;
         Node* current = head;
         while(current!=NULL){
             std::cout<<current->data<<" ";
