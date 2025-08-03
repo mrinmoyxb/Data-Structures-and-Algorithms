@@ -127,25 +127,21 @@ Node* removeNthNode(Node*& head, int n){
 }
 
 int main(){
-    Node* l1 = new Node(12);
-    // Node* l2 = new Node(120);
+    Node* l1 = new Node(1);
+    Node* l2 = new Node(1);
     Node* head1 = l1;
-    // Node* head2 = l2;
-    insertAtTail(head1, 22);
-    // insertAtTail(head1, 13);
-    // insertAtTail(head1, 49);
-    // insertAtTail(head1, 60);
-    // insertAtTail(head1, 120);
-    // insertAtTail(head2, 190);
-    // insertAtTail(head2, 320);
-    // insertAtTail(head2, 500);
+    Node* head2 = l2;
+    insertAtTail(head1, 2);
+    insertAtTail(head1, 4);
+    insertAtTail(head2, 3);
+    insertAtTail(head2, 4);
     display(head1);
-    // display(head2);
+    display(head2);
 
-    // Node* sortedLinkedList = mergeTwoSortedLinkedList(head1, head2);
-    // display(sortedLinkedList);
+    Node* sortedLinkedList = mergeTwoSortedLinkedList(head1, head2);
+    display(sortedLinkedList);
     
-    Node* updateList = removeNthNode(head1, 1);
-    display(updateList);
+    // Node* updateList = removeNthNode(head1, 1);
+    // display(updateList);
     return 0;
 }
