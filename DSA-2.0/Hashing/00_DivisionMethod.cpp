@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 
-//! Open Chaining(Closed Addressing)
 class Node{
     public:
     int data;
@@ -58,6 +57,7 @@ class LinkedList{
     }
 };
 
+//! Division Method to generate hash value
 class Hashing{
     public:
     std::vector<LinkedList> hashTable;
@@ -81,7 +81,7 @@ class Hashing{
         int index = hashFunction(key);
         bool isAvailable = hashTable[index].search(key);
         if(isAvailable){
-            std::cout<<"Yes "<<key<<" is available at index: "<<index<<std::endl;
+            std::cout<<"Yes, "<<key<<" is available at "<<index<<std::endl;
         }else{
             std::cout<<"No"<<std::endl;
         }
@@ -98,14 +98,16 @@ class Hashing{
 
 int main(){
     Hashing h(10);
-    h.add(102);
-    h.add(119);
-    h.add(142);
-    h.add(102);
-    h.add(643);
-    h.add(507);
+    h.add(120);
+    h.add(322);
+    h.add(430);
+    h.add(544);
+    h.add(939);
+    h.add(128);
+    h.add(892);
     h.display();
-    h.search(102);
-    h.search(999);
+
+    h.search(544);
+
     return 0;
 }
