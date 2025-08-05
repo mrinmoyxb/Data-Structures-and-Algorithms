@@ -59,6 +59,7 @@ class LinkedList{
     }
 };
 
+//! Mid sqaure method 
 class Hashing{
     public:
     int buckets;
