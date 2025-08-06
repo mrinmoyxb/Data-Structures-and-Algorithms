@@ -65,10 +65,35 @@ void unorderedMap(){
     for(auto i:map){
         std::cout<<i.first<<" : "<<i.second<<std::endl;
     }
+}
 
+void maxFrequency(std::vector<int> vec){
+    std::map<int, int> map;
+    for(auto num: vec){
+        map[vec[num]]++;
+    }
+
+    for(auto i: map){
+        std::cout<<i.first<<" : "<<i.second<<std::endl;
+    }
+
+    int max = INT_MIN;
+    for(auto i:map){
+        if(i.second>max){
+            max = i.second;
+        }else{
+            continue;
+        }
+    }
+
+    std::cout<<"max frequency: "<<max<<std::endl;
 }
 
 int main(){
     unorderedMap();
+
+    std::vector<int> vec = {1, 2, 3, 1, 12, 45, 22, 2, 4, 3, 1};
+    maxFrequency(vec);
+
     return 0;
 }
