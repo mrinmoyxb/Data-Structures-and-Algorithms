@@ -65,17 +65,27 @@ void postorderTraversal(Node* root){
 void levelOrderTraversal(Node* root){
     std::queue<Node*> q;
     q.push(root);
+    q.push(NULL);
 
     while(!q.empty()){
         Node* temp = q.front();
-        std::cout<<temp->data<<" ";
         q.pop();
-
-        if(temp->left){
-            q.push(temp->left);
+        
+        if(temp==NULL){
+            std::cout<<std::endl;
+            if(!q.empty()){
+                q.push(NULL);
+            }
         }
-        if(temp->right){
-            q.push(temp->right);
+        else{
+            std::cout<<temp->data<<" ";
+            if(temp->left){
+                q.push(temp->left);
+            }
+
+            if(temp->right){
+                q.push(temp->right);
+            }
         }
     }
 }
