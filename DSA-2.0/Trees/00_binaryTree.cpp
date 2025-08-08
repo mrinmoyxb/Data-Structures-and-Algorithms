@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 
 class Node{
     public:
@@ -60,9 +61,29 @@ void postorderTraversal(Node* root){
     std::cout<<root->data<<" ";
 }
 
+//! Level Order Traversal
+void levelOrderTraversal(Node* root){
+    std::queue<Node*> q;
+    q.push(root);
+
+    while(!q.empty()){
+        Node* temp = q.front();
+        std::cout<<temp->data<<" ";
+        q.pop();
+
+        if(temp->left){
+            q.push(temp->left);
+        }
+        if(temp->right){
+            q.push(temp->right);
+        }
+    }
+}
+
 int main(){
     Node* root = buildTree();
     std::cout<<"Preorder Traversal"<<std::endl;
     preorderTraversal(root);
+    levelOrderTraversal(root);
     return 0;
 }
