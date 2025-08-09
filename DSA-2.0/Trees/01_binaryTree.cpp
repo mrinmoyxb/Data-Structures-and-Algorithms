@@ -14,6 +14,18 @@ class NodeChar{
     }
 };
 
+class NodeInt{
+    public:
+    int data;
+    NodeInt* left;
+    NodeInt* right;
+    NodeInt(int data){
+        this->data = data;
+        this->left = NULL;
+        this->right = NULL;
+    }
+};
+
 //! Build Tree
 NodeChar* buildTree(NodeChar* root){
     int data;
@@ -28,6 +40,23 @@ NodeChar* buildTree(NodeChar* root){
     std::cout<<"Enter data in the right of "<<data<<std::endl;
     root->right = buildTree(root->right);
 
+    return root;
+}
+
+NodeInt* buildIntTree(){
+    int data;
+    std::cout<<"Enter data: ";
+    std::cin>>data;
+    NodeInt* root = new NodeInt(data);
+
+    if(data==-1){
+        return NULL;
+    }
+
+    std::cout<<"Enter data in the left of "<<data<<std::endl;
+    root->left = buildIntTree();
+    std::cout<<"Enter data in the right of "<<data<<std::endl;
+    root->right = buildIntTree();
     return root;
 }
 
@@ -146,6 +175,16 @@ void searchUsingDFS(NodeChar* root, char key){
     std::cout<<"No, "<<key<<" is not available"<<std::endl;
 }
 
+int sumOfAllElements(NodeInt* root){
+    if(root==NULL){
+        return 0;
+    }
+
+    int left = sumOfAllElements(root->left);
+    int right = sumOfAllElements(root->right);
+    return left+right+root->data;
+}
+
 //! Manual way of building tree:
 //?             a
 //?            / \
@@ -171,13 +210,15 @@ int main(){
     // depthFirstSearch(root);
     // breadthFirstSearch(root);
     // std::cout<<"\nBreadth first search using recursion: "<<std::endl;
-    breadthFirstSearch(root);
+    // breadthFirstSearch(root);
     
-    std::cout<<"\nSearch using BFS: "<<std::endl;
-    searchUsingBFS(root, 'd');
+    // std::cout<<"\nSearch using BFS: "<<std::endl;
+    // searchUsingBFS(root, 'd');
 
-    std::cout<<"\nSearch using DFS: "<<std::endl;
-    searchUsingDFS(root, 'd');
+    // std::cout<<"\nSearch using DFS: "<<std::endl;
+    // searchUsingDFS(root, 'd');
 
+    NodeInt* rootInt = buildIntTree();
+    std::cout<<"sum of all elements: "<<sumOfAllElements(rootInt);
     return 0;
 }
