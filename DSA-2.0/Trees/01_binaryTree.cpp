@@ -85,6 +85,67 @@ void breadthFirstSearch(NodeChar* root){
     }
 }
 
+//! Depth First Search Using Recursion
+void depthFirstSearchRecursion(NodeChar* root){
+    if(root==NULL){
+        return;
+    }
+    depthFirstSearchRecursion(root->right);
+    depthFirstSearchRecursion(root->left);
+    std::cout<<root->data<<" ";
+}
+
+//! Searching using Breadth First Search
+void searchUsingBFS(NodeChar* root, char key){
+    NodeChar* rootNode = root;
+    std::queue<NodeChar*> result;
+    result.push(rootNode);
+
+    while(!result.empty()){
+        NodeChar* temp = result.front();
+        result.pop();
+        if(temp->data == key){
+            std::cout<<"Yes, "<<key<<" is available"<<std::endl;
+            return;
+        }
+
+        if(temp->left){
+            result.push(temp->left);
+        }
+
+        if(temp->right){
+            result.push(temp->right);
+        }
+    }
+
+    std::cout<<"No, "<<key<<" is not available"<<std::endl;
+}
+
+//! Search using Depth First Search
+void searchUsingDFS(NodeChar* root, char key){
+    NodeChar* rootNode = root;
+    std::stack<NodeChar*> result;
+    result.push(rootNode);
+
+    while(!result.empty()){
+        NodeChar* temp = result.top();
+        result.pop();
+        if(temp->data == key){
+            std::cout<<"Yes, "<<key<<" is available"<<std::endl;
+            return;
+        }
+
+        if(temp->left){
+            result.push(temp->left);
+        }
+
+        if(temp->right){
+            result.push(temp->right);
+        }
+    }
+    std::cout<<"No, "<<key<<" is not available"<<std::endl;
+}
+
 //! Manual way of building tree:
 //?             a
 //?            / \
@@ -106,9 +167,17 @@ int main(){
     b->right = e;
     c->right = f;
 
-    display(root);
-    depthFirstSearch(root);
+    // display(root);
+    // depthFirstSearch(root);
+    // breadthFirstSearch(root);
+    // std::cout<<"\nBreadth first search using recursion: "<<std::endl;
     breadthFirstSearch(root);
+    
+    std::cout<<"\nSearch using BFS: "<<std::endl;
+    searchUsingBFS(root, 'd');
+
+    std::cout<<"\nSearch using DFS: "<<std::endl;
+    searchUsingDFS(root, 'd');
 
     return 0;
 }
