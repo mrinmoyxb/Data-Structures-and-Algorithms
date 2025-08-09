@@ -185,6 +185,26 @@ int sumOfAllElements(NodeInt* root){
     return left+right+root->data;
 }
 
+int minInTheTree(NodeInt* root){
+    if(root==NULL){
+        return INT_MAX;
+    }
+
+    int left = minInTheTree(root->left);
+    int right = minInTheTree(root->right);
+    return std::min(root->data, std::min(left, right));
+}
+
+int maxInTheTree(NodeInt* root){
+    if(root==NULL){
+        return INT_MIN;
+    }
+
+    int left = maxInTheTree(root->left);
+    int right = maxInTheTree(root->right);
+    return std::max(root->data, std::max(left, right));
+}
+
 //! Manual way of building tree:
 //?             a
 //?            / \
@@ -219,6 +239,11 @@ int main(){
     // searchUsingDFS(root, 'd');
 
     NodeInt* rootInt = buildIntTree();
-    std::cout<<"sum of all elements: "<<sumOfAllElements(rootInt);
+    // std::cout<<"sum of all elements: "<<sumOfAllElements(rootInt);
+    // int m = minInTheTree(rootInt);
+    // std::cout<<"min: "<<m<<std::endl;
+
+    int m = maxInTheTree(rootInt);
+    std::cout<<"max: "<<m<<std::endl;
     return 0;
 }
