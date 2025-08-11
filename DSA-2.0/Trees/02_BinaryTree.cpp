@@ -41,7 +41,7 @@ int numberOfNodes(Node* root){
     return left + right + 1;
 }
 
-//! Height of a tree: number of edges between root node and leaf node (the longest path)
+//* Height of a tree: number of edges between root node and leaf node (the longest path)
 int heightOfTree(Node* root){
     if(root==NULL){
         return -1;
@@ -49,7 +49,18 @@ int heightOfTree(Node* root){
 
     int left = heightOfTree(root->left);
     int right = heightOfTree(root->right);
-    return 1 + std::max(left, right);
+    return std::max(left, right)+1;
+}
+
+//* Height of a tree: Number of nodes between root node and leaf node
+int heightOfTreeNodes(Node* root){
+    if(root==NULL){
+        return 0;
+    }
+
+    int left = heightOfTreeNodes(root->left);
+    int right = heightOfTreeNodes(root->right);
+    return std::max(left, right)+1;
 }
 
 //! Full Binary Tree/Proper Binary tree: Parent or internal node has either two or no children
@@ -72,6 +83,7 @@ int main(){
     Node* root = buildTree();
     // std::cout<<"\nnumber of nodes: "<<numberOfNodes(root)<<std::endl;
     // std::cout<<"\nheight of tree: "<<heightOfTree(root)<<std::endl;
-    std::cout<<"Is the tree a full binary: "<<isFullBinaryTree(root)<<std::endl;
+    // std::cout<<"Is the tree a full binary: "<<isFullBinaryTree(root)<<std::endl;
+    std::cout<<"Height(Nodes): "<<heightOfTreeNodes(root);
     return 0;
 }
