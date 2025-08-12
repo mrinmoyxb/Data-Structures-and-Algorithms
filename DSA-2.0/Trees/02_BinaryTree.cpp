@@ -41,7 +41,8 @@ int numberOfNodes(Node* root){
     return left + right + 1;
 }
 
-//* Height of a tree: number of edges between root node and leaf node (the longest path)
+//! Height of a tree: 
+//* 1. Number of edges between root node and leaf node (the longest path)
 int heightOfTree(Node* root){
     if(root==NULL){
         return -1;
@@ -52,7 +53,7 @@ int heightOfTree(Node* root){
     return std::max(left, right)+1;
 }
 
-//* Height of a tree: Number of nodes between root node and leaf node
+//* 2. Number of nodes between root node and leaf node
 int heightOfTreeNodes(Node* root){
     if(root==NULL){
         return 0;
@@ -61,6 +62,27 @@ int heightOfTreeNodes(Node* root){
     int left = heightOfTreeNodes(root->left);
     int right = heightOfTreeNodes(root->right);
     return std::max(left, right)+1;
+}
+
+//! Diameter of tree: number of nodes on the longest path between two leaf nodes
+int hoftree(Node* root){
+    if(root==NULL){
+        return 0;
+    }
+
+    int left = hoftree(root->left);
+    int right = hoftree(root->right);
+    return std::max(left, right)+1;
+}
+int diameterOfTree(Node* root){
+    if(root==NULL){
+        return 0;
+    }
+
+    int left = diameterOfTree(root->left);
+    int right = diameterOfTree(root->right);
+    int both = hoftree(root->left) + hoftree(root->right) + 1;
+    return std::max(std::max(left, right), both);
 }
 
 //! Full Binary Tree/Proper Binary tree: Parent or internal node has either two or no children
@@ -79,11 +101,29 @@ bool isFullBinaryTree(Node* root){
     return false;
 }
 
+//! Check balanced tree: difference between height of left and right subtree is not more than 1
+bool isBalancedTree(Node* root){
+    if(root==NULL){
+        return true;
+    }
+
+    bool left = isBalancedTree(root->left);
+    bool right = isBalancedTree(root->right);
+    int diff = abs(hoftree(root->left) - hoftree(root->right))<=1;
+    if(left && right && diff){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 int main(){
     Node* root = buildTree();
     // std::cout<<"\nnumber of nodes: "<<numberOfNodes(root)<<std::endl;
     // std::cout<<"\nheight of tree: "<<heightOfTree(root)<<std::endl;
     // std::cout<<"Is the tree a full binary: "<<isFullBinaryTree(root)<<std::endl;
-    std::cout<<"Height(Nodes): "<<heightOfTreeNodes(root);
+    // std::cout<<"Height(Nodes): "<<heightOfTreeNodes(root);
+    // std::cout<<"Diameter: "<<diameterOfTree(root)<<std::endl;
+    std::cout<<"is tree balanced: "<<isBalancedTree(root)<<std::endl;
     return 0;
 }
