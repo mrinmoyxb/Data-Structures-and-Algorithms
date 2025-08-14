@@ -59,15 +59,52 @@ std::pair<int, int> duplicatesMatrix(std::vector<std::vector<int>> &vec){
     return ans;
 }
 
+class Solution{
+    public:
+    std::vector<int> findMissingAndRepeatedValues(std::vector<std::vector<int>>& grid){
+        const int n = grid.size();
+        const int nSquared = n*n;
+        std::vector<int> count(nSquared+1);
+
+        for(const std::vector<int>& row: grid){
+            for(const int num: row){
+                count[num]++;
+            }
+        }
+
+        std::cout<<"array: "<<std::endl;
+        for(int i=0; i<count.size(); i++){
+            std::cout<<i<<" : "<<count[i]<<std::endl;
+        }
+
+        int repeated = -1;
+        int missing = -1;
+
+        for(int i=1; i<count.size(); i++){
+            if(count[i]==2){
+                repeated = i;
+            }
+            if(count[i]==0){
+                missing = i;
+            }
+        }
+
+        return {repeated, missing};
+    }
+};
+
 int main(){
     std::vector<std::vector<int>> vec = {{1, 3}, {2, 2}};
-    for(auto& i: vec){
-        for(auto& j: i){
-            std::cout<<j<<" ";
-        }
-        std::cout<<std::endl;
-    }
-    std::pair<int, int> p = duplicatesMatrix(vec);
-    std::cout<<p.first<<" "<<p.second<<std::endl;
+    // for(auto& i: vec){
+    //     for(auto& j: i){
+    //         std::cout<<j<<" ";
+    //     }
+    //     std::cout<<std::endl;
+    // }
+    // std::pair<int, int> p = duplicatesMatrix(vec);
+    // std::cout<<p.first<<" "<<p.second<<std::endl;
+
+    Solution s;
+    s.findMissingAndRepeatedValues(vec);
     return 0;
 }
