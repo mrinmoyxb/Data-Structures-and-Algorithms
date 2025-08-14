@@ -12,12 +12,13 @@ class Node{
     }
 };
 
-//! Priority = Low ranks got higher priority
+//! Priority = Low ranks has higher priority
 class PriorityQueue{
     public:
     Node* head = NULL;
     Node* tail = NULL;
 
+    //! here we add elements with the highest priority 
     void enqueue(int data, int priority){
         Node* newNode = new Node(data, priority);
 
@@ -49,6 +50,7 @@ class PriorityQueue{
         tail = newNode;
     }
 
+    //! remove the element of highest rank
     void dequeue(){
         Node* temp = head;
         std::cout<<"\ndeleted node: "<<std::endl;
@@ -58,6 +60,11 @@ class PriorityQueue{
         head = head->next;
         delete temp;
         temp = NULL;
+    }
+
+    std::pair<int, int> peek(){
+        std::pair<int, int> result = {head->data, head->priority};
+        return result;
     }
 
     void display(){
