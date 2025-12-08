@@ -234,10 +234,56 @@ void arrayIntersection(){
     }
 }
 
+void arrayIntersectionO(){
+    std::vector<int> v1 = {1, 2, 3, 3, 4};
+    std::vector<int> v2 = {1, 2, 2, 4};
+    std::vector<int> intersection;
+
+    int i=0, j=0;
+
+    while(i<v1.size() && j<v2.size()){
+        if(v1[i]==v2[j]){
+            intersection.push_back(v2[j]);
+        }
+        else if(i>j){
+            i++;
+        }else{
+            j++;
+        }
+    }
+
+    for(auto i = intersection.begin(); i<intersection.end(); i++){
+        std::cout<<*i<<" ";
+    }
+}
+
+void pairSum(){
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+    std::vector<std::vector<int>> s;
+    int sum = 5;
+    for(int i=0; i<vec.size(); i++){
+        for(int j=i+1; j<vec.size(); j++){
+            if(vec[i]+vec[j]==sum){
+                std::vector<int> temp = {vec[i], vec[j]};
+                s.push_back(temp);
+            }
+        }
+    }
+
+    std::cout<<"matrix: "<<std::endl;
+    for(auto &i: s){
+        for(auto &j: i){
+            std::cout<<j<<" ";
+        }
+        std::cout<<"\n";
+    }
+}
+
 int main(){
     // swapAlternatesO();
     // uniqueNumOfOccurences();
     // findDuplicatesO();
-    arrayIntersection();
+    // arrayIntersection();
+    pairSum();
     return 0;
 }
