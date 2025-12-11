@@ -59,6 +59,6 @@ int main(){
     std::pair<int, int> result = firstAndLastOccurence(arr, size, key);
     std::cout<<"initial: "<<result.first<<std::endl;
     std::cout<<"last: "<<result.second<<std::endl;
-    
+
     return 0;
 }
