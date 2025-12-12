@@ -61,6 +61,7 @@ int binarySearch(int arr[], int size, int key){
             start = mid+1;
         }
     }
+    return -1;
 }
 
 int first(int arr[], int size, int key){
@@ -105,12 +106,31 @@ int last(int arr[], int size, int key){
     return ans;
 }
 
+int peakElement(int arr[], int size){
+    int start = 0;
+    int end = size-1;
+
+    while(start<end){
+        int mid = start + (end-start)/2;
+
+        if(arr[mid]<arr[mid+1]){
+            start = mid+1;
+        }else{
+            end = mid;
+        }
+    }
+
+    return arr[start];
+}
+
 int main(){
     int arr[9] = {1, 2, 2, 2, 2, 3, 3, 4, 4};
     int size = 9;
     int result = numOfElements(arr, size, 2);
 
     std::cout<<"Number of elements: "<<result<<std::endl;
+    int arr[4] = {3, 4, 5, 1};
+    std::cout<<"Peak element: "<<peakElement(arr, 4);
 
     return 0;
 }
