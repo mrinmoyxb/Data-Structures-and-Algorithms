@@ -126,6 +126,6 @@ int main(){
     // std::cout<<"Mid element: "<<midNode(head)<<std::endl;
 
     std::cout<<"Mid node: "<<midNodeOptimised(head)<<std::endl;
-
+    
     return 0;
 }
