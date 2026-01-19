@@ -51,6 +51,29 @@ void deleteNode(Node*& node){
     delete deleteNode;
 }
 
+Node* deleteMid(Node*& head){
+
+    if(head==nullptr || head->next==nullptr){
+        return head;
+    }
+
+    Node* slow = head;
+    Node* fast = head;
+    Node* prev = NULL;
+    while(fast!=NULL && fast->next!=NULL){
+        prev = slow;
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    prev->next = slow->next;
+    Node* delNode = slow;
+    slow->next = NULL;
+    delete delNode;
+
+    return head;
+}
+
 int main(){
     Node* head = new Node(100);
     insertAtTail(head, 200);
@@ -59,20 +82,8 @@ int main(){
     insertAtTail(head, 500);
     display(head);
     
-    Node* current = head;
-    int count = 1;
-    Node* node = nullptr;
-    while(count!=4){
-        current = current->next;
-        count+=1;
-    }
-    node = current;
-    std::cout<<"\nnode: "<<node->data<<std::endl;
-    std::cout<<std::endl;
-
-    
-    deleteNode(node);
-    display(head);
+    Node* r = deleteMid(head);
+    display(r);
 
 
     return 0;
