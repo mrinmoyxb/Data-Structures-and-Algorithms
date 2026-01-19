@@ -74,6 +74,21 @@ Node* deleteMid(Node*& head){
     return head;
 }
 
+Node* midNode(Node*& head){
+    if(head==NULL || head->next==NULL){
+        return head;
+    }
+
+    Node* slow = head;
+    Node* fast = head;
+    while(fast!=NULL && fast->next!=NULL){
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    return slow;
+}
+
 int main(){
     Node* head = new Node(100);
     insertAtTail(head, 200);
@@ -81,10 +96,9 @@ int main(){
     insertAtTail(head, 400);
     insertAtTail(head, 500);
     display(head);
-    
-    Node* r = deleteMid(head);
-    display(r);
 
+    Node* mid = midNode(head);
+    std::cout<<"\nMid Node: "<<mid->data<<std::endl;
 
     return 0;
 }
