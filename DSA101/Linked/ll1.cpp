@@ -31,6 +31,7 @@ void display(Node* head){
     }
 }
 
+//! LEETCODE 237 ✅
 void deleteNode(Node*& node){
     if(node==nullptr || node->next==nullptr){
         return;
@@ -51,6 +52,7 @@ void deleteNode(Node*& node){
     delete deleteNode;
 }
 
+//! LEETCODE 2095 ✅
 Node* deleteMid(Node*& head){
 
     if(head==nullptr || head->next==nullptr){
@@ -74,6 +76,7 @@ Node* deleteMid(Node*& head){
     return head;
 }
 
+//! LEETCODE 876 ✅
 Node* midNode(Node*& head){
     if(head==NULL || head->next==NULL){
         return head;
@@ -89,6 +92,56 @@ Node* midNode(Node*& head){
     return slow;
 }
 
+//! LEETCODE 328: ✅
+Node* oddEvenLinkedList(Node* head){
+
+    if(head==NULL || head->next==NULL){
+        return head;
+    }
+
+    Node* odd = head;
+    Node* even = head->next;
+    Node* evenCopy = head->next;
+
+    while(even!=NULL && even->next!=NULL){
+        odd->next = even->next;
+        even->next = even->next->next;
+        odd = odd->next;
+        even = even->next;
+    }
+
+    odd->next = evenCopy;
+    return head;
+}
+
+//! LEETCODE 142: 
+Node* linkedListCycle(Node* head){
+    Node* slow = head;
+    Node* fast = head;
+
+    while(fast!=NULL && fast->next!=NULL){
+        slow = slow->next;
+        fast = fast->next->next;
+        if(slow==fast){
+            break;
+        }
+    }
+
+    if(slow!=fast){
+        return NULL;
+    }
+
+    Node* p = head;
+    while(p!=slow){
+        p=p->next;
+        slow=slow->next;
+    }
+
+    return p;
+}
+
+
+
 int main(){
     Node* head = new Node(100);
     insertAtTail(head, 200);
@@ -97,8 +150,8 @@ int main(){
     insertAtTail(head, 500);
     display(head);
 
-    Node* mid = midNode(head);
-    std::cout<<"\nMid Node: "<<mid->data<<std::endl;
+    Node* oe = oddEvenLinkedList(head);
+    display(oe);
 
     return 0;
 }
