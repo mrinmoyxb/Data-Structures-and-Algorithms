@@ -1,4 +1,5 @@
 #include <iostream>
+#include <unordered_set>
 
 class Node{
     public:
@@ -114,7 +115,7 @@ Node* oddEvenLinkedList(Node* head){
     return head;
 }
 
-//! LEETCODE 142: 
+//! LEETCODE 142: ✅
 Node* linkedListCycle(Node* head){
     Node* slow = head;
     Node* fast = head;
@@ -140,17 +141,79 @@ Node* linkedListCycle(Node* head){
     return p;
 }
 
+//! LEETCODE 86 ✅
+Node* partitonList(Node* head, int key){
+    Node* small = NULL;
+    Node* scopy = NULL;
+    Node* large = NULL;
+    Node* lcopy = NULL;
+    Node* current = head;
+    
+    while(current!=NULL){
+        if(current->data < key){
+            if(small==NULL){
+                small = new Node(current->data);
+                scopy = small;
+                current = current->next;
+            }else{
+                small->next = new Node(current->data);
+                small = small->next;
+                current = current->next;
+            }
+        }else{
+            if(current->data >= key){
+                if(large==NULL){
+                    large = new Node(current->data);
+                    lcopy = large;
+                    current = current->next;
+                }else{
+                    large->next = new Node(current->data);
+                    large = large->next;
+                    current = current->next;
+                }
+            }
+        }
+    }
 
+    if(scopy==NULL) return lcopy;
+    small->next = lcopy;
+    return scopy;
+}
+
+//! LEETCODE 3217 ✅
+Node* deleteNode(Node* head, int arr[], int size){
+    std::unordered_set<int> set(arr, arr+size);
+
+    while(head!=NULL && set.count(head->data)){
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+    }
+
+    Node* current = head;
+    while(current!=NULL && current->next!=NULL){
+        if(set.count(current->next->data)){
+            Node* temp = current->next;
+            current->next = current->next->next;
+            delete temp;
+        }else{
+            current = current->next;
+        }
+    }
+
+    return head;
+}
 
 int main(){
-    Node* head = new Node(100);
-    insertAtTail(head, 200);
-    insertAtTail(head, 300);
-    insertAtTail(head, 400);
-    insertAtTail(head, 500);
+    Node* head = new Node(1);
+    insertAtTail(head, 2);
+    insertAtTail(head, 3);
+    insertAtTail(head, 4);
+    insertAtTail(head, 5);
     display(head);
 
-    Node* oe = oddEvenLinkedList(head);
+    int arr[4] = {1, 2, 3, 5};
+    Node* oe = deleteNode(head, arr, 4);
     display(oe);
 
     return 0;
