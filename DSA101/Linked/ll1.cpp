@@ -204,6 +204,21 @@ Node* deleteNode(Node* head, int arr[], int size){
     return head;
 }
 
+Node* swapNodes(Node* head){
+    if(head==NULL || head->next==NULL){
+        return head;
+    }
+
+    Node* current = head;
+    while(current && current->next){
+        Node* temp = current->next;
+        current->next = current->next->next;
+        temp->next = current;
+        current = current->next;
+    }
+    
+}
+
 int main(){
     Node* head = new Node(1);
     insertAtTail(head, 2);
