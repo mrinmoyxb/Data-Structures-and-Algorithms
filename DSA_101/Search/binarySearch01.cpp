@@ -1,5 +1,6 @@
 #include <iostream>
 #include <map>
+#include <vector>
 
 bool binarySearch(int arr[], int size, int key){
     int start = 0;
@@ -125,19 +126,70 @@ int loccur(int arr[], int size, int key){
     return last;
 }
 
-int peak(int arr[], int size){
+int peak(std::vector<int> A){
+    int start = 1;
+    int end = A.size()-2;
 
-    int start = 0;
-    int end = size-1;
     while(start<=end){
         int mid = start + (end-start)/2;
-        if(arr[mid]<arr[mid+1]){
+
+        if(A[mid-1] < A[mid] && A[mid+1] > A[mid]){
+            return mid;
+        }
+        else if(A[mid-1]<A[mid]){
             start = mid+1;
-        }else{
-            end = mid;
+        }
+        else{
+            end = mid-1;
         }
     }
-    return start;
+
+    return -1;
+}
+
+int singleElement1(std::vector<int> vec){
+    for(int i=0; i<vec.size(); i++){
+        if(vec[i]!=vec[i+1] && vec[i]!=vec[i-1]){
+            return vec[i];
+        }
+    }
+    return -1;
+}
+
+int singleElement2(std::vector<int> vec){
+    int ans = 0;
+    for(int i=0; i<vec.size(); i++){
+        ans = ans ^ vec[i];
+    }
+    return ans;
+}
+
+int singleElement3(std::vector<int> arr){
+    int start = 0;
+    int end = arr.size()-1;
+
+    while(start<=end){
+        int mid = start + (end-start)/2;
+        if(arr[mid]!=arr[mid+1] && arr[mid]!=arr[mid-1]){
+            return mid;
+        }
+        else if(mid%2==0){
+            if(arr[mid]==arr[mid-1]){
+                end = mid-1;
+            }else{
+                start = mid+1;
+            }
+        }
+        else if(mid%2!=0){
+            if(arr[mid]==arr[mid-1]){
+                start = mid+1;
+            }else{
+                end = mid-1;
+            }
+        }
+    }
+
+    return -1;
 }
 
 int main(){
@@ -145,9 +197,9 @@ int main(){
     int arr[5] = {1, 4, 5, 3, 2};
     std::cout<<"Array: "<<std::endl;
 
-    for(int i=0; i<5; i++){
-        std::cout<<arr[i]<<" ";
-    }
+    // for(int i=0; i<5; i++){
+    //     std::cout<<arr[i]<<" ";
+    // }
 
     // std::cout<<std::endl;
     // int f = firstOccurence(arr, 5, 4);
@@ -162,7 +214,8 @@ int main(){
     // std::cout<<"number of values: "<<v<<std::endl;
 
     std::cout<<std::endl;
-    int p = peak(arr, 5);
+    std::vector<int> vec = {1, 1, 2, 2, 3, 4, 4, 5, 5};
+    int p = singleElement3(vec);
     std::cout<<"Peak: "<<p<<std::endl;
 
 }
