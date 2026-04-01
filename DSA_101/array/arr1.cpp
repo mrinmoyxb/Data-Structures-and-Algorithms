@@ -92,6 +92,27 @@ void removeDuplicates(std::vector<int> v){
     }
 }
 
+void rotateByOne(std::vector<int> v){
+    int a = v[0];
+    int i;
+    for(i = 1; i<v.size(); i++){
+        v[i-1] = v[i];
+    }
+    v[v.size()-1] = a;
+
+    for(auto i: v){
+        std::cout<<i<<" ";
+    }
+}
+
+void rotateByKPlaces(std::vector<int> v, int k){
+    for(int i=k; i<v.size(); i++){
+        v[i-k] = v[i];
+    }
+
+    
+}
+
 
 int main(){
     std::vector<int> v = {1, 1, 2, 2, 2, 3, 3};
@@ -101,6 +122,6 @@ int main(){
     }
 
     std::cout<<"\nDuplicate: "<<std::endl;
-    removeDuplicates(v);
+    rotateByOne(v);
     return 0;
 }
