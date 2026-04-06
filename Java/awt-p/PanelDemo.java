@@ -5,7 +5,6 @@ public class PanelDemo extends Frame {
     Panel p1, p2;
 
     PanelDemo(){
-        setLayout(new FlowLayout());
         
         p1 = new Panel();
         p1.add(new Label("Name"));
@@ -18,6 +17,10 @@ public class PanelDemo extends Frame {
 
         add(p1);
         add(p2);
+
+        setLayout(new FlowLayout());
+        setSize(300, 300);
+        setVisible(true);
     }
 
     public static void main(String[] args){
