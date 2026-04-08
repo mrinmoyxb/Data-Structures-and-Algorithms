@@ -79,6 +79,43 @@ bool searchBST(struct Node* root, int key){
     return false;
 }
 
+struct Node* getInorderSuccessor(struct Node* root){
+    while(root!=NULL && root->left!=NULL){
+        root = root->left;
+    }
+    return root;
+}
+
+struct Node* deleteNodeBST(struct Node* root, int key){
+    if(root==NULL){
+        return NULL;
+    }
+
+    if(key > root->data){
+        root->right = deleteNodeBST(root->right, key);
+    }else if(key < root->data){
+        root->left = deleteNodeBST(root->left, key);
+    }
+
+    else{
+        if(root->left == NULL){
+            struct Node* temp = root->left;
+            free(root);
+            return temp;
+        }else if(root->right == NULL){
+            struct Node* temp = root->right;
+            free(root);
+            return temp;
+        }else {
+            struct Node* IS = getInorderSuccessor(root->right);
+            root->data = IS->data;
+            root->right = deleteNodeBST(root->right, IS->data);
+        }
+    }
+
+    return root;
+}
+
 void preorder(struct Node* root){
     if(root==NULL){
         return;
