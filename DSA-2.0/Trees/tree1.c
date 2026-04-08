@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 struct Node{
     int data;
@@ -24,6 +25,58 @@ struct Node* createTree(){
     root->right = createTree();
 
     return root;
+}
+
+struct Node* BinarySearchTree(struct Node* root, int data){
+    if(root==NULL){
+        struct Node* newNode = malloc(sizeof(struct Node));
+        newNode->data = data;
+        newNode->left = newNode->right = NULL;
+        return newNode;
+    }
+
+    if(data < root->data){
+        root->left = BinarySearchTree(root->left, data);
+    }else if(data > root->data){
+        root->right = BinarySearchTree(root->right, data);
+    }
+
+    return root;
+}
+
+struct Node* BinarySearchTree1(struct Node* root, int data){
+    if(root==NULL){
+        struct Node* newNode = malloc(sizeof(struct Node));
+        newNode->data = data;
+        newNode->left = newNode->right = NULL;
+        return newNode;
+    }
+
+    if(data < root->data){
+        root->left = BinarySearchTree1(root->left, data);
+    }else if(data > root->data){
+        root->right = BinarySearchTree1(root->right, data);
+    }
+
+    return root;
+}
+
+bool searchBST(struct Node* root, int key){
+    if(root==NULL){
+        return false;
+    }
+
+    if(root->data == key){
+        return true;
+    }
+
+    if(key > root->data){
+        return searchBST(root->right, key);
+    }else{
+        return searchBST(root->left, key);
+    }
+
+    return false;
 }
 
 void preorder(struct Node* root){
@@ -54,12 +107,20 @@ void inorder(struct Node* root){
 }
 
 int main(){
-    struct Node* root = createTree();
-    preorder(root);
-    printf("\n");
-    postorder(root);
-    printf("\n");
+    struct Node* root = NULL;
+    root = BinarySearchTree(root, 50);
+    root = BinarySearchTree(root, 20);
+    root = BinarySearchTree(root, 10);
+    root = BinarySearchTree(root, 55);
+    root = BinarySearchTree(root, 52);
+    root = BinarySearchTree(root, 62);
+    root = BinarySearchTree(root, 80);
+    root = BinarySearchTree(root, 58);
+
+    printf("\nInorder traversal: ");
     inorder(root);
-    printf("\n");
+
+    bool result = searchBST(root, 69);
+    printf("\nResult: %d", result);
     return 0;
 }
