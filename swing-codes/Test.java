@@ -2,6 +2,33 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+abstract class Shape{
+    abstract void area();
+
+    void display(){
+        System.out.println("Shape");
+    }
+}
+
+interface A{
+    int x = 100;
+    void displayA();
+}
+
+interface B{
+    void display();
+}
+
+class C implements A, B{
+    public void display(){
+        System.out.println("A");
+    }
+
+    public void displayA(){
+        System.out.println("A");
+    }
+}
+
 class MySwingApp extends JFrame{
     MySwingApp(){
         JLabel l = new JLabel("My Swing app");
@@ -106,15 +133,89 @@ class ProgressBarDemo extends JFrame {
 
     public void iterate(){
         while(i<=2000){
-            jb.setValue(i);
-            i=i+20;
+            
+            try{
+                Thread t = new Thread();
+                t.sleep(2000);
+                jb.setValue(i);
+                i=i+20;
+            
+            }catch(InterruptedException e){
+
+            }
+            
         }
+    }
+}
+
+class RegistrationForm extends JFrame implements ActionListener{
+    JLabel name, age, gender;
+    JRadioButton male, female;
+    JComboBox dept;
+    JTextField n, a;
+    JButton b;
+
+    RegistrationForm(){
+        name = new JLabel("Enter name");
+        n = new JTextField();
+        age = new JLabel("Enter age");
+        a = new JTextField();
+        gender = new JLabel("Enter gender");
+        male = new JRadioButton("Male");
+        female = new JRadioButton("Female");
+        ButtonGroup bg = new ButtonGroup();
+        bg.add(male);
+        bg.add(female);
+        String[] items = {"MCA", "BCA"};
+        dept = new JComboBox(items);
+        b = new JButton("Done");
+
+        add(name);
+        add(n);
+        add(age);
+        add(a);
+        add(gender);
+        add(male);
+        add(female);
+        add(dept);
+        add(b);
+
+        name.setBounds(50, 100, 80, 40);
+        n.setBounds(120, 100, 120, 40);
+        age.setBounds(50, 120, 80, 40);
+        a.setBounds(120, 120, 120, 40);
+        gender.setBounds(50, 180, 80, 40);
+        male.setBounds(120, 180, 120, 40);
+        female.setBounds(150, 180, 80, 40);
+        dept.setBounds(50, 220, 80, 40);
+        b.setBounds(50, 290, 80, 40);
+
+        b.addActionListener(this);
+
+        setLayout(null);
+        setVisible(true);
+        setSize(400, 400);
+
+    }
+
+    public void actionPerformed(ActionEvent e){
+        String name = n.getText();
+        int age = Integer.parseInt(a.getText());
+        String genderSelected;
+        if(male.isSelected()){
+            genderSelected = "Male";
+        }else{
+            genderSelected = "Female";
+        }
+        String d = (String) dept.getSelectedItem();
+        System.out.println("DONE");
     }
 }
 
 public class Test {
     public static void main(String[] args) {
-        ProgressBarDemo p = new ProgressBarDemo();
-        p.iterate();
+        ProgressBarDemo j = new ProgressBarDemo();
+        j.iterate();
+        
     }
 }
