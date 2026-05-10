@@ -156,6 +156,76 @@ int binarySearchRec(int arr[], int start, int end, int key){
     }
 }
 
+//! string reverse
+void stringRev(std::string &word, int start, int end){
+    if(start>=end){
+        return;
+    }
+    std::swap(word[start], word[end]);
+    stringRev(word, start+1, end-1);
+}
+
+//! check palindrome
+bool palindrome(std::string word, int start, int end){
+    if(start>=end){
+        return true;
+    }
+
+    if(word[start]!=word[end]){
+        return false;
+    }else{
+        return palindrome(word, start+1, end-1);
+    }
+}
+
+//! power
+int power1(int a, int b){
+    if(b==0){
+        return 1;
+    }
+    if(b==1){
+        return a;
+    }
+    int ans = power1(a, b/2);
+    if(b%2==0){
+        return ans * ans;
+    }else{
+        return a * (ans * ans);
+    }
+}
+
+//! bubble sort
+void sortArray(int arr[], int size){
+    if(size==0 || size==1){
+        return;
+    }
+
+    for(int i=0; i<size-1; i++){
+        if(arr[i]>arr[i+1]){
+            std::swap(arr[i], arr[i+1]);
+        }
+    }
+
+    sortArray(arr, size-1);
+}
+
+//! print all subsets
+void ps(std::vector<int>& arr, std::vector<int>& ans, int i){
+    if(i==arr.size()){
+        for(int val: ans){
+            std::cout<<val<<" ";
+        }
+        std::cout<<std::endl;
+        return;
+    }
+
+    ans.push_back(arr[i]);
+    ps(arr, ans, i+1);
+
+    ans.pop_back();
+    ps(arr, ans, i+1);
+}
+
 int main(){
     // std::cout<<"Power of 3^3: "<<power(3, 3)<<std::endl;
     // std::cout<<"Fibonacci of 5: "<<fibonacci(8)<<std::endl;
@@ -163,9 +233,16 @@ int main(){
     // CountDigits c = CountDigits();
     // c.countDigi(123);
     // check();
-    int arr[5] = {11, 22, 33, 44, 54};
+    // int arr[5] = {11, 22, 33, 44, 54};
     // std::cout<<"Total: "<<sumOfArr(arr, 0, 5)<<std::endl;
     // std::cout<<"linear search: "<<linearSearch(arr, 42, 5);
-    std::cout<<"binary search: "<<binarySearchRec(arr, 0, 4, 44);
+    // std::cout<<"binary search: "<<binarySearchRec(arr, 0, 4, 44);
+    // std::string word = "camac";
+    // stringRev(word, 0, 4);
+    // std::cout<<word<<std::endl;
+    // std::cout<<"Palindrome: "<<palindrome(word, 0, word.length()-1)<<std::endl;
+    std::vector<int> arr = {1, 2, 3};
+    std::vector<int> ans;
+    ps(arr, ans, 0);
     return 0;
 }
