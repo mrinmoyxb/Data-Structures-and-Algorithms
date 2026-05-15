@@ -39,14 +39,44 @@ void mergeSort(std::vector<int>& arr, int start, int end){
     if(start>=end){
         return;
     }
+    
     int mid = start + (end-start)/2;
+
+    std::cout<<"left: "<<std::endl;
+    std::cout<<"start: "<<start<<std::endl;
+    std::cout<<"end: "<<end<<std::endl;
+    std::cout<<"mid: "<<mid<<std::endl;
+    for(int i=start; i<=mid; i++){
+        std::cout<<arr[i]<<" ";
+    }
+    std::cout<<std::endl;
     mergeSort(arr, start, mid);
+    std::cout<<std::endl;
+
+    std::cout<<"right: "<<std::endl;
+    std::cout<<"start: "<<(mid+1)<<std::endl;
+    std::cout<<"end: "<<end<<std::endl;
+    std::cout<<"mid: "<<mid<<std::endl;
+    for(int i=(mid+1); i<=end; i++){
+        std::cout<<arr[i]<<" ";
+    }
+    std::cout<<std::endl;
     mergeSort(arr, mid+1, end);
+    std::cout<<std::endl;
+
     merge(arr, start, end);
+    std::cout<<"merge: "<<std::endl;
+    std::cout<<"start: "<<start<<std::endl;
+    std::cout<<"end: "<<end<<std::endl;
+    for(int i=start; i<=end; i++){
+        std::cout<<arr[i]<<" ";
+    }
+    std::cout<<std::endl;
+    std::cout<<std::endl;
 }
 
 int main(){
-    std::vector<int> v = {12, 3, 4, 11, 34};
+    std::vector<int> v = {8, 3, 4, 5, 2};
     mergeSort(v, 0, v.size()-1);
     std::cout<<"Array: "<<std::endl;
     for(int i=0; i<v.size(); i++){
