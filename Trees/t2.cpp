@@ -70,6 +70,8 @@ std::vector<int> verticalOrder(Node* root){
             }
         }
     }
+
+    return ans;
 }
 
 std::vector<vector<int>> vertical(Node* root){
@@ -103,7 +105,28 @@ std::vector<vector<int>> vertical(Node* root){
     return ans;
 }
 
+void selectionSort(vector<int> nums){
+    for(int i=0; i<nums.size()-1; i++){
+        int min = i;
+        int j = i+1;
+        while(j<nums.size()){
+            if(nums[j] < nums[min]){
+                min = j;
+            }
+            j++;
+        }
+
+        swap(nums[i], nums[min]);
+    }
+
+
+    for(int i: nums){
+        std::cout<<i<<" ";
+    }
+}
 
 int main(){
+    vector<int> v = {12, 2, 2, 45, 3, 4};
+    selectionSort(v);
     return 0;
 }
