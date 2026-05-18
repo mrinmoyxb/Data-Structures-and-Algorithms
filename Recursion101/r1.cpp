@@ -119,13 +119,13 @@ std::string d2bR(int num, std::string str){
     return d2bR(num/2, str);
 }
 
-// GCD using recursion
+// GCD using recursion ✅
 int gcd(int a, int b){
     if(b==0) return a;
     return gcd(b, a%b);
 }
 
-// LCM using GCD recursion
+// LCM using GCD recursion 
 int lcm(int a, int b){
     return (a*b)/gcd(a, b);
 }
