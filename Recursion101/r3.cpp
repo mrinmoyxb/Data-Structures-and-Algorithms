@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
+#include <set>
 
 //! CONSEQUENT 
-
 void subsequences(int index, std::vector<int>&ds, int arr[], int n){
     if(index==n){
         for(auto it: ds){
@@ -102,9 +102,82 @@ void check(int index, std::vector<int>& ds, int arr[], int n){
     check(index+1, ds, arr, n);
 }
 
+void sub(int index, std::vector<char>& ds, std::vector<char>& arr, int n){
+    if(index==n){
+        for(auto c: ds){
+            std::cout<<c<<" ";
+        }
+        std::cout<<std::endl;
+        return;
+    }
+
+    ds.emplace_back(arr[index]);
+    sub(index+1, ds, arr, n);
+    ds.pop_back();
+    sub(index+1, ds, arr, n);
+}
+
+void combinations(int index, std::vector<int>& ds, std::vector<int>& candidates, int target, int sum, std::vector<std::vector<int>>& ans){
+    if(index==candidates.size()){
+        if(sum==target){
+            sort(ds.begin(), ds.end());
+            ans.push_back(ds);
+            return;
+        }else return;
+    }
+
+    ds.emplace_back(candidates[index]);
+    sum+=candidates[index];
+    combinations(index+1, ds, candidates, target, sum, ans);
+
+    ds.pop_back();
+    sum-=candidates[index];
+    combinations(index+1, ds, candidates, target, sum, ans);
+}
+
+std::vector<std::vector<int>> combinationSum2(std::vector<int>& candidates, int target) {
+    std::vector<int> ds;
+    std::vector<std::vector<int>> ans;
+    combinations(0, ds, candidates, target, 0, ans);
+    return ans;
+}
+
+void powerSet(){
+    std::vector<int> v = {1, 2, 3};
+}
+
 int main(){
-    std::vector<int> ds = {};
-    int arr[3] = {1, 2, 3};
-    check(0, ds, arr, 3);
+    std::vector<char> ds = {};
+    std::vector<int>arr = {10,1,2,7,6,1,5};
+    // check(0, ds, arr, 3);
+    //std::vector<char> arr = {'a', 'b', 'c', 'd', 'e', 'f'};
+
+    // std::string num = "1234";
+    // for(char c: num){
+    //     std::cout<<c<<std::endl;
+    // }
+    // sub(0, ds, arr, 6);
+    std::vector<std::vector<int>> v = combinationSum2(arr, 8);
+    std::set<std::vector<int>> unique;
+
+    for(auto &i: v){
+        sort(i.begin(), i.end()); 
+        unique.insert(i);
+    }
+
+    for(auto vi: v){
+        for(auto x: vi){
+            std::cout<<x<<" ";
+        }
+        std::cout<<std::endl;
+    }
+
+    std::cout<<std::endl;
+    for(auto vi: unique){
+        for(auto x: vi){
+            std::cout<<x<<" ";
+        }
+        std::cout<<std::endl;
+    }
     return 0;
 }
