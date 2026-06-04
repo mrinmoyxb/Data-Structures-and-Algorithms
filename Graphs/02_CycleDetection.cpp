@@ -40,7 +40,19 @@ bool isCycleBFS(vector<vector<int>>& adj, int i, vector<bool>& visited){
     return false;
 }
 
-
+bool isCycleDFSDirected(vector<vector<int>>& adj, int u, vector<bool>& visited, vector<bool>& inRecursion){
+    visited[u] = true;
+    inRecursion[u] = true;
+    for(int &v: adj[u]){
+        if(visited[v]==false && isCycleDFSDirected(adj, v, visited, inRecursion)){
+            return true;
+        }else if(inRecursion[v]==true){
+            return true;
+        }
+    }
+    inRecursion[u] = false;
+    return false;
+}
 
 bool isCycle(vector<vector<int>>& adj){
     int nodes = adj.size();
