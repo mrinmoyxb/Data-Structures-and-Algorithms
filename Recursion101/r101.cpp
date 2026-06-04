@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
+#include <string>
 using namespace std;
 
 void printNames(std::string word, int n){
@@ -137,16 +139,133 @@ int subsequenceCount(vector<int>& arr, int k, int index, vector<int>& ds, vector
     return left+right;
 }
 
+int genNumSubseq(vector<int>& nums, int target, int index, vector<int>& ds, vector<vector<int>>& ans, int size, int sum){
+        if(index==size){
+            auto result = minmax_element(ds.begin(), ds.end());
+            int min = *result.first;
+            int max = *result.second;
+            int sum = min+max;
+            if(sum<=target){
+                ans.push_back(ds);
+                return 1;
+            }
+            return 0;
+        }
+
+        ds.push_back(nums[index]);
+        int left = genNumSubseq(nums, target, index+1, ds, ans, size, sum);
+        ds.pop_back();
+        int right = genNumSubseq(nums, target, index+1, ds, ans, size, sum);
+        return left + right;
+    }
+
+void findCombinations(vector<int>& nums, int target, int index, vector<int>& ds, vector<vector<int>>& ans, int size){
+    if(index==size){
+        if(target==0){
+            ans.push_back(ds);
+        }
+        return;
+    }
+
+    if(nums[index]<=target){
+        ds.push_back(nums[index]);
+        findCombinations(nums, target-nums[index], index, ds, ans, size);
+        ds.pop_back();
+    }
+    findCombinations(nums, target, index+1, ds, ans, size);
+}
+
+void findCombinations1(vector<int>& nums, int target, int index, vector<int>& ds, vector<vector<int>>& ans, int size){
+    if(target==0){
+        ans.push_back(ds);
+        return;
+    }
+
+    for(int i=index; i<size; i++){
+        if(i>index && nums[i]==nums[i-1]) continue;
+        if(nums[i]>target) break;
+        ds.push_back(nums[index]);
+        findCombinations1(nums, target, index+1, ds, ans, size);
+        ds.pop_back();
+    }
+}
+
+void check(){
+    vector<int> nums = {1,2,3,4,5};
+    int size = nums.size();
+    vector<int> ans(size, 100);
+    stack<int> st;
+
+    int num = nums[size - 1];
+    cout<<"num: "<<num<<endl;
+    for (int i = 0; i < size - 1; i++){
+        if (nums[i] > num){
+            ans[size - 1] = nums[i];
+            st.push(size - 1);
+            break;
+        }else{
+            ans[size-1]  = -1;
+            st.push(size-1);
+        }
+    }
+
+    for(auto v: ans){
+        cout<<v<<endl;
+    }
+
+    for (int i = size - 2; i >= 0; i--){
+        while (!st.empty() && nums[i] > nums[st.top()]){
+            st.pop();
+        }
+        if (st.empty())ans[i] = -1;
+        else ans[i] = nums[st.top()];
+        st.push(i);
+    }
+
+    cout<<endl;
+    for(auto v: ans){
+        cout<<v<<endl;
+    }
+}
+
+void genSeq(string s, int size, int index, vector<char>& ds, vector<vector<char>>& ans){
+    if(index==size){
+        ans.push_back(ds);
+        return;
+    }
+
+    ds.push_back(s[index]);
+    genSeq(s, size, index+1, ds, ans);
+    ds.pop_back();
+    genSeq(s, size, index+1, ds, ans);
+}
+
+void genSeq1(string s, int size, int index, vector<char>& ds, vector<vector<char>>& ans){
+    if(index==size){
+        ans.push_back(ds);
+        return;
+    }
+
+    for(int i=index; i<size; i++){
+        if(i>index && s[i]==s[i-1]) continue;
+        ds.push_back(s[index]);
+        genSeq1(s, size, index+1, ds, ans);
+        ds.pop_back();
+    }
+}
+
 int main(){
-    vector<int> arr = {1, 2, 1};
-    vector<int> ds;
-    vector<vector<int>> ans;
-    int k = 2;
-    //genSubsequences(arr, 0, ds, ans, 3);
-    std::cout<<"COUNT: "<<subsequenceCount(arr, k, 0, ds, ans, 3, 0)<<endl;
-    for(auto vec: ans){
-        for(int num: vec){
-            cout<<num<<" ";
+    string s = "aab";
+    int size = 3;
+    int index = 0;
+    vector<char> ds;
+    vector<vector<char>> ans;
+
+    genSeq1(s, size, 0, ds, ans);
+
+    for(auto a: ans){
+        for(auto v: a){
+            cout<<v<<" ";
         }
         cout<<endl;
     }
