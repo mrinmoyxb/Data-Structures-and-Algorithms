@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+//! UNDIRECTED GRAPH
 void DFS(unordered_map<int, vector<int>>& adj, int u, vector<int>& result, vector<bool>& visited){
     if(visited[u]) return;
     visited[u] = true;
@@ -31,6 +32,37 @@ void BFS(unordered_map<int, vector<int>>& adj, int u, vector<int>& result, vecto
     }
 }
 
+void BFS1(unordered_map<int, vector<int>>& adj, int u, vector<int>& result, vector<bool>& visited){
+    queue<int> q;
+    q.push(u);
+
+    visited[u] = true;
+    result.push_back(u);
+
+    while(!q.empty()){
+        int front = q.front();
+        q.pop();
+        for(auto& value: adj[front]){
+            if(!visited[value]){
+                visited[value] = true;
+                q.push(value);
+                result.push_back(value);
+            }
+        }
+    }
+}
+
+void DFS1(unordered_map<int, vector<int>>& adj, int u, vector<int>& result, vector<bool>& visited){
+    visited[u] = true;
+    result.push_back(u);
+
+    for(auto& v: adj[u]){
+        if(visited[v]) return;
+        if(!visited[v]){
+            DFS(adj, v, result, visited);
+        }
+    }
+}
 
 int main(){
     vector<vector<int>> graph = {{2, 3, 1}, {0}, {0, 4}, {0}, {2}};
@@ -53,7 +85,8 @@ int main(){
 
     vector<int> result;
     vector<bool> visited(nodes, false);
-    DFS(adj, 0, result, visited);
+    DFS1(adj, 0, result, visited);
+    cout<<"DFS: "<<endl;
     for(auto v: result){
         cout<<v<<" ";
     }

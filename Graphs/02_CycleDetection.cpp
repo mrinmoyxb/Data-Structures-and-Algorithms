@@ -3,8 +3,7 @@
 #include <map>
 using namespace std;
 
-// DFS - approach
-// if a node is already visited then there's a cycle 
+// DFS - approach; if a node is already visited then there's a cycle 
 bool isCycleDFS(vector<vector<int>>& adj, int i, vector<bool>& visited, int parent){
     visited[i] = true;
     for(int& v: adj[i]){
@@ -17,7 +16,6 @@ bool isCycleDFS(vector<vector<int>>& adj, int i, vector<bool>& visited, int pare
     return false;
 }
 
-// BFS - approach
 bool isCycleBFS(vector<vector<int>>& adj, int i, vector<bool>& visited){
     queue<pair<int, int>> q;
     q.push({i, -1});
@@ -65,9 +63,42 @@ bool isCycle(vector<vector<int>>& adj){
     return false;
 }
 
+//! Detect cycle in Undirected Graph: DFS
+bool checkUsingDFS(unordered_map<int, vector<int>>& adj, int u, vector<bool>& visited, int parent){
+    visited[u] = true;
+
+    for(auto& v: adj[u]){
+        if(v==parent) continue;
+        if(visited[v]) return true;
+        if(checkUsingDFS(adj, v, visited, u)) return true;
+    }
+    return false;
+}
+
+//! Detect cycle in Undirected Graph: BFS
+bool checkUsingBFS(unordered_map<int, vector<int>>& adj, int u, vector<bool>& visited, int parent){
+    queue<pair<int, int>> q; //<node, parent>
+    q.push({u, -1});
+    visited[u] = true;
+
+    while(!q.empty()){
+        pair<int, int> front = q.front();
+        q.pop();
+
+        for(auto& v: adj[front.first]){
+            if(visited[v]==false){
+                visited[v] = true;
+                q.push({v, front.first});
+            }else if(v!=front.second){
+                return true;
+            }
+        }
+    }
+    return false;
+}
 
 int main(){
-    vector<vector<int>> graph = {{1}, {0, 2, 4}, {1, 3}, {2, 4}, {1, 3}};
+    vector<vector<int>> graph = {{1, 2}, {0, 2}, {0, 1, 3}, {2}};
     
     // data structure of adjacency list
     unordered_map<int, vector<int>> adj;
@@ -86,6 +117,11 @@ int main(){
         }
         cout<<endl;
     }
+
+    vector<bool> visited(nodes+1, false);
+
+    cout<<"CYCLE: "<<checkUsingBFS(adj, 0, visited, -1);
+
 
     return 0;
 }
