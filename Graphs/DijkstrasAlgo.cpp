@@ -28,6 +28,11 @@ void dijkstraAlgo(int V, unordered_map<int, vector<pair<int, int>>>& adj, int so
             }
         }
     }
+
+    cout<<"Result: "<<endl;
+    for(int& v: result){
+        cout<<v<<" ";
+    }
 }
 
 int main(){
@@ -43,6 +48,7 @@ int main(){
         adj[v].push_back({wt, u});
     }
 
+    cout<<"Adjacency Matrix: "<<endl;
     for(auto& value: adj){
         cout<<value.first<<" : ";
         for(auto& v: value.second){
@@ -51,7 +57,7 @@ int main(){
         cout<<endl;
     }
 
-
+    dijkstraAlgo(3, adj, source);
 
     return 0;
 }
