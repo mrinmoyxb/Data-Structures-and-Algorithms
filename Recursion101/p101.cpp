@@ -81,18 +81,32 @@ int myAtoi(string &s){
     return res*sign;
 }
 
+void genExpr(string digits, vector<string>& res, string& expr, int index, vector<char>& vec){
+    if(index==digits.size()){
+        res.push_back(expr);
+        return;
+    }
 
+    for(char ch: vec){
+        expr.push_back(ch);
+        expr.push_back(digits[index]);
+        genExpr(digits, res, expr, index+1, vec);
+        expr.pop_back();
+        expr.pop_back();
+    }
+
+}
 
 int main(){
-    // vector<char> chars = {'a', 'b', 'c'};
-    // vector<string> str;
-    // string current = "";
-    // int k = 2;
+    string digits = "123";
+    vector<char> v = {'+', '-', '*', '/'};
+    vector<string> res;
+    string expr = "";
+    expr.push_back(digits[0]);
+    genExpr(digits, res, expr, 1, v);
 
-    // genK(chars, k, current, str);
-    // for(string word: str){
-    //     cout<<word<<endl;
-    // }
- 
+    for(auto& st: res){
+        cout<<st<<endl;
+    }
     return 0;
 }
